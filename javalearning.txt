@@ -27,3 +27,17 @@ Set any of your methods to private that are considered helper methods.
 
 ###########################
 
+file scanner
+
+File file = new File("text file name");
+Scanner fileScanner = new Scanner(file);
+
+###########################
+Exception : Another option is to simply catch ALL exception types by catching the general type Exception, this means that whatever exception is thrown within this try-catch block, it will be caught and handled in this catch statement
+
+##########################
+polymorphism : You are allowed to use the parent's data type when declaring a child variable. But to use the parent's constructor you will need to cast the variable before assigning it to the child's data type.
+
+super : You are allowed to re-use the parent method in the child class by using the "super" keyword, followed by a dot and then the method name
+
+
