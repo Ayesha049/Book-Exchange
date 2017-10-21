@@ -1,0 +1,29 @@
+This : is the reference to current object in a class
+
+Java default access modifier is public
+
+
+############################
+SOME TIPS
+
+Always try to declare all fields as private.
+
+Create a constructor that accepts those private fields as inputs.
+
+Create a public method that sets each private field, this way you will know when you are changing a field. These methods are called setters.
+
+Create a public method that returns each private field, so you can read the value without mistakingly changing it. These methods are called getters.
+
+**************************
+
+Set all your classes to public.
+
+Set all your fields to private.
+
+Set any of your methods to public that are considered actions.
+
+Set any of your methods to private that are considered helper methods.
+
+
+###########################
+

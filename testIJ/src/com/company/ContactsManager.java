@@ -17,7 +17,7 @@ public class ContactsManager {
 
     Contact searchContact(String searchName){
         for(int i=0; i<friendsCount; i++){
-            if(myFriends[i].name.equals(searchName)){
+            if(myFriends[i].getName().equals(searchName)){
                 System.out.println("found");
                 return myFriends[i];
             }
