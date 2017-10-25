@@ -40,4 +40,9 @@ polymorphism : You are allowed to use the parent's data type when declaring a ch
 
 super : You are allowed to re-use the parent method in the child class by using the "super" keyword, followed by a dot and then the method name
 
+You can also use super() to call the parent's constructor. This is usually done when implementing the child's constructor. Typically you would want to first run everything in the parent's constructor then add more code in the child's constructor.
+If a child's constructor does not explicitly call the parent's constructor using super, the Java compiler automatically inserts a call to the default constructor of the parent class. If the parent class does not have a default constructor, you will get a compile-time error
+
+link for java String class : https://docs.oracle.com/javase/7/docs/api/java/lang/String.html 
+
 
