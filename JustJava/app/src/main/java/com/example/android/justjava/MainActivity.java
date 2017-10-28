@@ -12,18 +12,34 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
 
+    public int numberOfCoffee=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
+    public void increment(View view){
+        numberOfCoffee=numberOfCoffee+1;
+        display(numberOfCoffee);
+    }
+
+    public void decrement(View view){
+        numberOfCoffee=numberOfCoffee-1;
+        display(numberOfCoffee);
+    }
+
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        display(1);
-        displayPrice(2*10);
+        //display(numberOfCoffee);
+        //displayPrice(numberOfCoffee*10);
+        String priceMessage="Total : " + "$"+numberOfCoffee*10 + "\n" + "Thank You!";
+        displayMessage(priceMessage);
+        //priceMessage="Thank You!";
+
     }
 
     /**
@@ -40,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    }
+
+    /**
+     * This method displays the given text on the screen.
+     */
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
     }
 
 }
