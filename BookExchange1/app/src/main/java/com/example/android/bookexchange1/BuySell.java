@@ -1,7 +1,11 @@
 package com.example.android.bookexchange1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 /**
  * Created by l on 11/3/17.
@@ -13,5 +17,30 @@ public class BuySell extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_sell);
+
+
+        ImageView logout = (ImageView) findViewById(R.id.log_out);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent numbersIntent = new Intent(BuySell.this, MainActivity.class);
+                startActivity(numbersIntent);
+            }
+        });
+
+
+        ImageView pro = (ImageView) findViewById(R.id.profile);
+
+        pro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent numbersIntent = new Intent(BuySell.this, UserProfile.class);
+                startActivity(numbersIntent);
+            }
+        });
+
+
+
     }
 }
