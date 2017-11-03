@@ -2,7 +2,10 @@ package com.example.android.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -13,6 +16,7 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     public int numberOfCoffee=0;
+    boolean chk=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +34,28 @@ public class MainActivity extends AppCompatActivity {
         display(numberOfCoffee);
     }
 
+
+
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        //display(numberOfCoffee);
-        //displayPrice(numberOfCoffee*10);
-        String priceMessage="Total : " + "$"+numberOfCoffee*10 + "\n" + "Thank You!";
+
+        CheckBox ckk = (CheckBox) findViewById(R.id.chckbox);
+        chk=ckk.isChecked();
+        Log.v("MainActivity","Checked"+chk);
+
+
+        EditText edittext = (EditText) findViewById(R.id.InputName);
+        String name= edittext.getText().toString();
+
+        String priceMessage="";
+        priceMessage+="name : " + name + '\n';
+        priceMessage+="add whipped cream? " + chk + "\n";
+        priceMessage+="quantity : " + numberOfCoffee +"\n";
+        priceMessage+="Total : " + "$"+numberOfCoffee*10 + "\n" + "Thank You!";
         displayMessage(priceMessage);
-        //priceMessage="Thank You!";
+
 
     }
 
