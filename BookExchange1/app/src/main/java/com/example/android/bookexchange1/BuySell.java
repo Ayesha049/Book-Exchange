@@ -42,5 +42,29 @@ public class BuySell extends AppCompatActivity {
 
 
 
+        Button buy = (Button) findViewById(R.id.buy_books);
+
+        buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent numbersIntent = new Intent(BuySell.this, ShowBookList.class);
+                startActivity(numbersIntent);
+            }
+        });
+
+
+
+        Button sell = (Button) findViewById(R.id.sell_books);
+
+        sell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent numbersIntent = new Intent(BuySell.this, SellingForm.class);
+                startActivity(numbersIntent);
+            }
+        });
+
+
+
     }
 }

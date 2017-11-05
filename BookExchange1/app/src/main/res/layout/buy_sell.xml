@@ -75,11 +75,13 @@
         android:layout_margin="8dp"
         android:layout_weight="2">
         <Button
+            android:id="@+id/buy_books"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="buy books"
             android:padding="24dp"/>
         <Button
+            android:id="@+id/sell_books"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="sell books"
