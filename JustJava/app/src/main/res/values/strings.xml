@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">Just Java</string>
-    <string name="QUANTITY">QUANTITY</string>
-    <string name="ord">order</string>
-    <string name="zero">0</string>
-    <string name="zerod">$0</string>
-    <string name="price">price</string>
-</resources>
