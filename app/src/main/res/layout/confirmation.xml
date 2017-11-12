@@ -17,11 +17,11 @@
             android:id="@+id/to"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Congratulations!\nYour ID has been confirmed"
+            android:text="@string/congratulation"
             android:gravity="center"
             android:textColor="#FD8E09"
-            android:padding="8dp"
-            android:textSize="26sp"
+            android:padding="@dimen/margin"
+            android:textSize="@dimen/medium_text"
             />
 
     </LinearLayout>
@@ -34,8 +34,8 @@
             android:id="@+id/logg_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="log in"/>
+            android:padding="@dimen/margin"
+            android:text="@string/log_in"/>
 
     </LinearLayout>
 

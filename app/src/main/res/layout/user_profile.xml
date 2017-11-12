@@ -33,8 +33,8 @@
         android:layout_height="wrap_content"
         android:text="hello world"
         android:textColor="#81D4FA"
-        android:padding="20dp"
-        android:textSize="30dp"
+        android:padding="@dimen/large_margin"
+        android:textSize="@dimen/large_text"
         />
 
 

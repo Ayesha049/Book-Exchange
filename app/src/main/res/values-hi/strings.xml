@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Book Exchange</string>
+    <string name="app_name">बुक एक्सचेंज</string>
+    <string name="log_in">लॉग इन करें</string>
+    <string name="book_name">बुक नाम</string>
+    <string name="author_name">लेखक</string>
+    <string name="price">कीमत: 20 / =</string>
+    <string name="order">खरीदखरीद</string>
+    <string name="welcome">स्वागत हे!</string>
+    <string name="Sign_Up">साइन अप करें</string>
+    <string name="select">चुनें कि आप क्या चाहते हैं</string>
+    <string name="buy_book">किताबें खरीदें</string>
+    <string name="sell_book">पुस्तकें बेचें</string>
+    <string name="delivery_charge">डिलीवरी मूल्य: 50 टन</string>
+    <string name="total">कुल: 350 टीके</string>
+    <string name="payment">भुगतान प्रक्रिया:</string>
+    <string name="cash_on_delivery">कैश ऑन डिलीवरी</string>
+    <string name="credit_card">क्रेडिट कार्ड</string>
+    <string name="continue_buying">खरीदारी जारी रखें</string>
 </resources>

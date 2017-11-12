@@ -9,10 +9,10 @@
 
     <ImageView
         android:id="@+id/bookPic"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="@dimen/ex_ex_large_margin"
+        android:layout_height="@dimen/ex_ex_large_margin"
         android:layout_centerVertical="true"
-        android:layout_margin="15dp"
+        android:layout_margin="@dimen/medium_margin"
         android:scaleType="centerCrop"
         android:src="@drawable/boi" />
 
@@ -20,18 +20,18 @@
         android:id="@+id/bookName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/ex_large_margin"
         android:layout_toRightOf="@+id/bookPic"
-        android:text="Face Cake :3 " />
+        android:text="@string/face" />
 
     <TextView
         android:id="@+id/bookPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bookName"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/medium_margin"
         android:layout_toRightOf="@+id/bookPic"
-        android:text="Price : 200/=" />
+        android:text="@string/price" />
 
 
 </RelativeLayout>

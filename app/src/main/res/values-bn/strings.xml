@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"বই বিনিময় "</string>
+    <string name="log_in">"লগ ইন  "</string>
+    <string name="book_name">"বইএর নাম "</string>
+    <string name="author_name">লেখক</string>
+    <string name="price">" মূল্য: ২০ / ="</string>
+    <string name="order">" অর্ডার "</string>
+    <string name="welcome">" স্বাগতম "</string>
+    <string name="Sign_Up">" সাইন আপ "</string>
+    <string name="select">" পছন্দ করুন "</string>
+    <string name="buy_book">" বই কিনুন "</string>
+    <string name="sell_book">" বই বেচুন "</string>
+    <string name="delivery_charge">" ডেলিভারি চার্জ : ৫০টাকা  "</string>
+    <string name="total">" টোটাল : ৩৫০টাকা "</string>
+    <string name="payment">" মুল্যদান প্রক্রিয়া: "</string>
+    <string name="cash_on_delivery">" ক্যাশ অন ডেলিভারি"</string>
+    <string name="credit_card">" ক্রেডিট কার্ড"</string>
+    <string name="continue_buying">আরও কিনুন</string>
+</resources>

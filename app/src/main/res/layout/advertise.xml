@@ -18,7 +18,7 @@
             android:id="@+id/show_book_to_order_bookName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="bookname"
+            android:text="@string/book_name"
             android:paddingBottom="10dp"
             android:textSize="24sp" />
 
@@ -26,7 +26,7 @@
             android:id="@+id/show_book_to_order_bookWriter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="author"
+            android:text="@string/author_name"
             android:paddingBottom="10dp"
             android:textSize="24sp" />
 
@@ -45,14 +45,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="price : 20/="
+            android:text="@string/price"
             android:textSize="24sp" />
 
         <Button
             android:id="@+id/advertise_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Order"
+            android:text="@string/order"
             android:background="#8E24AA"
             android:textColor="#FFFFFF"
             android:layout_marginTop="150dp"

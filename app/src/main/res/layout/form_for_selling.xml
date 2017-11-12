@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".MainActivity">
 
@@ -24,11 +24,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:padding="8dp"
-                android:text="Sell Books"
+                android:layout_margin="@dimen/margin"
+                android:padding="@dimen/margin"
+                android:text="@string/sell_book"
                 android:textColor="#8E24AA"
-                android:textSize="30dp" />
+                android:textSize="@dimen/large_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -40,27 +40,27 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="Book Name"
+                android:layout_margin="@dimen/margin"
+                android:hint="@string/book_name"
                 android:inputType="textMultiLine" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="Author Name"
+                android:layout_margin="@dimen/margin"
+                android:hint="@string/author_name"
                 android:inputType="textMultiLine" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Image"
-                android:textSize="18sp"/>
+                android:text="@string/add_image"
+                android:textSize="@dimen/small_text"/>
 
             <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="10dp"
+                android:layout_width="@dimen/ex_ex_large_margin"
+                android:layout_height="@dimen/ex_ex_large_margin"
+                android:layout_margin="@dimen/margin"
                 android:layout_gravity="center"
                 android:src="@drawable/boi"
                 />
@@ -69,15 +69,15 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="price"
+                android:layout_margin="@dimen/margin"
+                android:hint="@string/price"
                 android:inputType="textMultiLine" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="Type of book"
+                android:layout_margin="@dimen/margin"
+                android:hint="@string/type_of_book"
                 android:inputType="textMultiLine" />
 
 
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="120dp"
                 android:background="#8E24AA"
-                android:text="add"
+                android:text="@string/add"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 

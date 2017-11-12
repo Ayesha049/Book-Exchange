@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:padding="16dp"
+            android:padding="@dimen/activity_horizontal_margin"
             android:src="@drawable/ic_account_circle_black_48dp"
 
             />
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:padding="16dp"
+            android:padding="@dimen/activity_horizontal_margin"
             android:src="@drawable/ic_exit_to_app_black_48dp"
 
             />
@@ -48,9 +48,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="100dp"
-            android:text="WELCOME!"
+            android:text="@string/welcome"
+            android:textAllCaps="true"
             android:textColor="@color/category_numbers"
-            android:textSize="36sp"
+            android:textSize="@dimen/large_text"
 
             />
 
@@ -58,10 +59,10 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:text="Select what you want."
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:text="@string/select"
             android:textColor="@color/category_numbers"
-            android:textSize="24sp" />
+            android:textSize="@dimen/medium_text" />
 
 
     </LinearLayout>
@@ -69,7 +70,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/margin"
         android:layout_weight="2"
         android:gravity="center"
         android:orientation="vertical">
@@ -78,15 +79,15 @@
             android:id="@+id/buy_books"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="24dp"
-            android:text="buy books" />
+            android:padding="@dimen/large_margin"
+            android:text="@string/buy_book" />
 
         <Button
             android:id="@+id/sell_books"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="24dp"
-            android:text="sell books" />
+            android:padding="@dimen/large_margin"
+            android:text="@string/sell_book" />
 
 
     </LinearLayout>
