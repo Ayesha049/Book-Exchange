@@ -30,6 +30,7 @@ __Mentor__: Jeanna Clark (@asclepiusgal)
 - [Balsamiq wireframe tool](https://balsamiq.com/)
 - [Draw.io diagramming tool](https://www.draw.io/)
 - [Genymotion Android emulator](https://www.genymotion.com/)
+- [BOI.jpg source](https://www.pexels.com/photo/blurred-book-book-pages-literature-46274/)
 
 ***
 
