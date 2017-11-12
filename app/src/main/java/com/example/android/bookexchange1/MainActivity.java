@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     // TODO: add Facebook Stetho debugging tool [re: http://facebook.github.io/stetho/]
-    // TODO: add the source of the BOI.jpeg image to README file
+    //// TODO: add the source of the BOI.jpeg image to README file
     // TODO: add UI screenshots to the README file
     // TODO: add vector drawable assets (e.g., XML / SVG format) for all the icons identified in your mockup to drawable folder
     // TODO: implement vector drawables in UI according to wireframes
