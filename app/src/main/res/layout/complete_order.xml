@@ -104,14 +104,14 @@
                 android:id="@+id/continue_buying"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/large_margin"
+                android:layout_margin="@dimen/medium_margin"
                 android:text="@string/continue_buying" />
 
             <Button
                 android:id="@+id/complete_your_order_checkout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/large_margin"
+                android:layout_margin="@dimen/medium_margin"
                 android:text="@string/checkout" />
 
         </LinearLayout>

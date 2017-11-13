@@ -50,11 +50,12 @@ public class ShowBookList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Book Books = books.get(position);
-                Advertise orderBook = new Advertise();
+                //Advertise orderBook = new Advertise();
                 //Log.v("showBookList","before orderBook");
-                orderBook.passBook(Books);
+                //orderBook.passBook(Books);
 
-                Intent familyIntent = new Intent(ShowBookList.this, orderBook.getClass());
+                Intent familyIntent = new Intent(ShowBookList.this, Advertise.class);
+                familyIntent.putExtra("Book",Books);
                 startActivity(familyIntent);
             }
         });

@@ -16,14 +16,6 @@ import com.example.android.bookexchange1.models.Book;
 
 public class Advertise extends AppCompatActivity {
 
-
-    public static Book myBook = null;
-
-    public void passBook(Book book) {
-        myBook = book;
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +27,12 @@ public class Advertise extends AppCompatActivity {
         TextView priceTextView = findViewById(R.id.show_book_to_order_bookPrice);
         ImageView bookImageView = findViewById(R.id.show_book_to_order_bookPic);
 
+        Book myBook = (Book)getIntent().getParcelableExtra("Book");
 
-        if (myBook != null) {
-            nameTextView.setText(myBook.getBookName());
-            authorTextView.setText("Author : " + myBook.getBookWriter());
-            priceTextView.setText(myBook.getPrice());
-            bookImageView.setImageResource(myBook.getImageId());
-        }
+        nameTextView.setText(myBook.getBookName());
+        authorTextView.setText("Author : " + myBook.getBookWriter());
+        priceTextView.setText(myBook.getPrice());
+        bookImageView.setImageResource(myBook.getImageId());
 
 
         Button orderButton = findViewById(R.id.advertise_order);

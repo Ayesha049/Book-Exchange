@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     //// TODO: add hard-coded dimensions to dimens.xml
     //// TODO: consider maintaining an additional string.xml in Hindi language and / or any of your choice;
     /// a right to left language such as Arabic is good for learning mirroring UIs
-   //// TODO: update layout files to reference strings from string.xml & dimensions from dimens.xml
+    //// TODO: update layout files to reference strings from string.xml & dimensions from dimens.xml
 
 
 

@@ -22,7 +22,7 @@
             android:text="@string/create_an_account"
             android:padding="@dimen/margin"
             android:textColor="#81D4FA"
-            android:textSize="@dimen/large_text"
+            android:textSize="@dimen/medium_text"
             android:layout_margin="@dimen/margin"
             />
     </LinearLayout>
