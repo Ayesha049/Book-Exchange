@@ -113,6 +113,11 @@
                 android:value=".BuySell"/>
         </activity>
 
+        <provider
+            android:name=".data.BookProvider"
+            android:authorities="com.example.android.bookexchange1"
+            android:exported="false" />
+
 
     </application>
 

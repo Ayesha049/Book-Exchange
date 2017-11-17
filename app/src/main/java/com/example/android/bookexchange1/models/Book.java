@@ -9,7 +9,6 @@ import android.os.Parcelable;
 
 public class Book implements Parcelable {
 
-    // TODO: consider implementing Parcelable here [re: https://developer.android.com/reference/android/os/Parcelable.html]
 
     private String bookName;
     private String bookWriter;
