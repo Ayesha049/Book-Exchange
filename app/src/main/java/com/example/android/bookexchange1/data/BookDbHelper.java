@@ -47,19 +47,19 @@ public class BookDbHelper extends SQLiteOpenHelper {
 
         String SQL_CREATE_ADVERTISE_TABLE =  "CREATE TABLE " + AdvertisementEntry.AD_TABLE_NAME + " ("
                 + AdvertisementEntry.AD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + AdvertisementEntry.COLUMN_AD_BOOK_NAME + " TEXT NOT NULL, "
-                + AdvertisementEntry.COLUMN_AD_AUTHOR_NAME + " TEXT NOT NULL, "
+                + AdvertisementEntry.COLUMN_AD_BOOK_NAME + " TEXT, "
+                + AdvertisementEntry.COLUMN_AD_AUTHOR_NAME + " TEXT, "
                 + AdvertisementEntry.COLUMN_AD_IMAGE + " BLOB, "
-                + AdvertisementEntry.COLUMN_AD_PRICE + " INTEGER NOT NULL DEFAULT 0,"
-                + AdvertisementEntry.COLUMN_AD_BOOKTAG + " TEXT NOT NULL, "
-                + AdvertisementEntry.COLUMN_AD_PERSON_ID + " INTEGER);";
+                + AdvertisementEntry.COLUMN_AD_PRICE + " INTEGER,"
+                + AdvertisementEntry.COLUMN_AD_BOOKTAG + " TEXT, "
+                + AdvertisementEntry.COLUMN_AD_PERSON_ID + " TEXT);";
 
         db.execSQL(SQL_CREATE_ADVERTISE_TABLE);
 
         String SQL_CREATE_ORDER_TABLE =  "CREATE TABLE " + OrderlistEntry.ORDER_TABLE_NAME + " ("
                 + OrderlistEntry.ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + OrderlistEntry.ORDER_PERSON_ID + " INTEGER NOT NULL, "
-                + OrderlistEntry.ORDER_AD_ID + " INTEGER NOT NULL);";
+                + OrderlistEntry.ORDER_PERSON_ID + " TEXT, "
+                + OrderlistEntry.ORDER_AD_ID + " TEXT);";
 
         db.execSQL(SQL_CREATE_ORDER_TABLE);
 

@@ -88,8 +88,6 @@ public class SignUp extends AppCompatActivity {
         }
 
         return false;
-
-
     }
 
 

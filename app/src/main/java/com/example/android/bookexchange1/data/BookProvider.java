@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.android.bookexchange1.data.BookContract.PersonEntry;
 
@@ -26,12 +27,18 @@ public class BookProvider extends ContentProvider {
     private static final int PERSONS = 100;
     private static final int PERSON_ID = 101;
 
+    private static final int ADVERTISEMENTS = 200;
+    private static final int AD_ID = 201;
+
 
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
         sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_PERSON, PERSONS);
         sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_PERSON + "/#", PERSON_ID);
+
+        sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_ADVERTISEMENT, ADVERTISEMENTS);
+        sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_ADVERTISEMENT+ "/#", AD_ID);
     }
 
     private BookDbHelper mDbHelper;
@@ -82,38 +89,14 @@ public class BookProvider extends ContentProvider {
         switch (match) {
             case PERSONS:
                 return insertPerson(uri, values);
+            case ADVERTISEMENTS:
+                return insertAdvertisement(uri, values);
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
         }
     }
 
     private Uri insertPerson(Uri uri, ContentValues values) {
-        /*String firstName = values.getAsString(PersonEntry.COLUMN_PERSON_FIRSTNAME);
-        if (firstName == null) {
-            throw new IllegalArgumentException("Person requires a First Name");
-        }
-
-        String lastName = values.getAsString(PersonEntry.COLUMN_PERSON_LASTNAME);
-        if (lastName == null) {
-            throw new IllegalArgumentException("Person requires a Last Name");
-        }
-
-        String emailId = values.getAsString(PersonEntry.COLUMN_PERSON_EMAIL);
-        if (emailId == null) {
-            throw new IllegalArgumentException("Person requires a Email Adress");
-        }
-
-        String phoneNo = values.getAsString(PersonEntry.COLUMN_PERSON_PHONE);
-        if (phoneNo == null) {
-            throw new IllegalArgumentException("Person requires a Phone Number");
-        }
-
-        String password = values.getAsString(PersonEntry.COLUMN_PERSON_PASSWORD);
-        if (password == null) {
-            throw new IllegalArgumentException("Person requires a password");
-        }*/
-
-
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
@@ -126,6 +109,24 @@ public class BookProvider extends ContentProvider {
         return ContentUris.withAppendedId(uri, id);
 
     }
+
+
+
+    private Uri insertAdvertisement(Uri uri, ContentValues values) {
+
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        long id = database.insert(BookContract.AdvertisementEntry.AD_TABLE_NAME,
+                null, values);
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+        getContext().getContentResolver().notifyChange(uri, null);
+        return ContentUris.withAppendedId(uri, id);
+
+    }
+
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {

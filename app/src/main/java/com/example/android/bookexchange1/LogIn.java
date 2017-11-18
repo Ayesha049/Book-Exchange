@@ -20,6 +20,7 @@ public class LogIn extends AppCompatActivity {
 
     private EditText mEmailId;
     private EditText mPassword;
+    public static String loginId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +79,18 @@ public class LogIn extends AppCompatActivity {
         }
 
         int passwordIndex = cursor.getColumnIndex(BookContract.PersonEntry.COLUMN_PERSON_PASSWORD);
+        //int personidindex = cursor.getColumnIndex(BookContract.PersonEntry.PERSON_ID);
         while (cursor.moveToNext()) {
             String readPassword = cursor.getString(passwordIndex);
-
             if (!Password.equals(readPassword)) {
                 Toast.makeText(LogIn.this, "Password incorrect", Toast.LENGTH_LONG).show();
                 return false;
+            }
+            else
+            {
+                loginId = emailId;
+                String msg = "" + loginId;
+                Toast.makeText(LogIn.this,msg,Toast.LENGTH_LONG).show();
             }
         }
 
