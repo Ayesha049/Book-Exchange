@@ -20,15 +20,24 @@ public class Book implements Parcelable {
 
     public Book() { super(); }
 
-    public Book(Integer imageId, String bookName, String bookWriter, String price, String tag,String idd, byte[] image) {
+    public Book(String bookName, String bookWriter, String price, String tag,String idd, byte[] image) {
+        this.bookName = bookName;
+        this.price = price;
+        //this.imageId = imageId;
+        this.bookWriter = bookWriter;
+        this.bookTag=tag;
+        this.personId=idd;
+        this.image = image;
+    }
+
+   /* public Book(Integer imageId, String bookName, String bookWriter, String price, String tag,String idd) {
         this.bookName = bookName;
         this.price = price;
         this.imageId = imageId;
         this.bookWriter = bookWriter;
         this.bookTag=tag;
         this.personId=idd;
-        this.image = image;
-    }
+    }*/
 
     public void setBookName(String bookName) { this.bookName = bookName; }
     public String getBookName() {
@@ -68,16 +77,16 @@ public class Book implements Parcelable {
 
     public static Creator<Book> getCreator() { return CREATOR;}
     public Book(Parcel parcel){
-        this.imageId = parcel.readInt();
+        //this.imageId = parcel.readInt();
         this.bookName = parcel.readString();
         this.bookWriter = parcel.readString();
         this.price = parcel.readString();
-        this.imageId = parcel.readInt();
         this.bookTag = parcel.readString();
         this.personId = parcel.readString();
         this.image = new byte[parcel.readInt()];
         parcel.readByteArray(image);
     }
+
 
     @Override
     public int describeContents() {
@@ -89,7 +98,7 @@ public class Book implements Parcelable {
         parcel.writeString(this.bookName);
         parcel.writeString(this.bookWriter);
         parcel.writeString(this.price);
-        parcel.writeInt(this.imageId);
+        //parcel.writeInt(this.imageId);
         parcel.writeString(this.bookTag);
         parcel.writeString(this.personId);
         parcel.writeByteArray(this.image);

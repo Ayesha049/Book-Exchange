@@ -40,14 +40,12 @@ public class BookAdapter extends ArrayAdapter<Book> {
         Book books = getItem(position);
 
         ImageView bookImageView = listItemView.findViewById(R.id.bookPic);
+        byte[] bookImage = books.getImage();
 
+        final Bitmap bmp = BitmapFactory.decodeByteArray(bookImage,0,bookImage.length);
+        bookImageView.setImageBitmap(bmp);
 
-        Bitmap bmp = BitmapFactory.decodeByteArray(books.getImage(),0,books.getImage().length);
-
-//        bookImageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, bookImageView.getWidth(),
-//                bookImageView.getHeight(), false));
-
-        bookImageView.setImageResource(books.getImageId());
+        //bookImageView.setImageResource(books.getImageId());
 
         TextView nameTextView = listItemView.findViewById(R.id.bookName);
         nameTextView.setText(books.getBookName());

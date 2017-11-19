@@ -28,6 +28,8 @@ public class ShowBookList extends AppCompatActivity {
 
         addBooksToList();
 
+        //books.add(new Book(R.drawable.boi,"name", "author", "200tk", "physics", "one@gmail.com"));
+
 //        books.add(new Book("The Art Of Photography", "Ayesha", R.drawable.boi, "400tk","novel","ria"));
         BookAdapter adapter = new BookAdapter(this, books);
 
@@ -73,7 +75,7 @@ public class ShowBookList extends AppCompatActivity {
         int personIdIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_PERSON_ID);
         int imageIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_IMAGE);
 
-        while (cursor.moveToNext()){
+        while (!cursor.isAfterLast()){
             String bookName = cursor.getString(bookNameIndex);
             String bookWriter = cursor.getString(bookWriterIndex);
             String price = cursor.getString(priceIndex);
@@ -81,7 +83,7 @@ public class ShowBookList extends AppCompatActivity {
             String personId = cursor.getString(personIdIndex);
             byte[] image = cursor.getBlob(imageIndex);
 
-            books.add(new Book(R.drawable.boi,bookName, bookWriter, price, bookTag, personId, image));
+            books.add(new Book(bookName, bookWriter, price, bookTag, personId, image));
         }
     }
 }
