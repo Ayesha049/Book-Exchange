@@ -20,14 +20,14 @@ public class Book implements Parcelable {
 
     public Book() { super(); }
 
-    public Book(String bookName, String bookWriter, String price, String tag,String idd, byte[] image) {
+    public Book(String bookName, String bookWriter, String price, String tag, String idd) {
         this.bookName = bookName;
         this.price = price;
         //this.imageId = imageId;
         this.bookWriter = bookWriter;
         this.bookTag=tag;
         this.personId=idd;
-        this.image = image;
+        //this.image = image;
     }
 
    /* public Book(Integer imageId, String bookName, String bookWriter, String price, String tag,String idd) {
@@ -83,8 +83,8 @@ public class Book implements Parcelable {
         this.price = parcel.readString();
         this.bookTag = parcel.readString();
         this.personId = parcel.readString();
-        this.image = new byte[parcel.readInt()];
-        parcel.readByteArray(image);
+        /*this.image = new byte[parcel.readInt()];
+        parcel.readByteArray(image);*/
     }
 
 
@@ -101,7 +101,7 @@ public class Book implements Parcelable {
         //parcel.writeInt(this.imageId);
         parcel.writeString(this.bookTag);
         parcel.writeString(this.personId);
-        parcel.writeByteArray(this.image);
+        //parcel.writeByteArray(this.image);
     }
 
     public static final Parcelable.Creator<Book> CREATOR

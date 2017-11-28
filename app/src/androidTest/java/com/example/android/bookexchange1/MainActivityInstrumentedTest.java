@@ -20,7 +20,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 public class MainActivityInstrumentedTest {
 
-    @Rule
+    /*@Rule
     public ActivityTestRule<MainActivity> mMainActivityTestRule = new
             ActivityTestRule<MainActivity>(MainActivity.class);
 
@@ -32,5 +32,5 @@ public class MainActivityInstrumentedTest {
     @Test
     public void clickLogIn_openLogInUi() throws Exception{
         onView(withId(R.id.log_in)).perform(click());
-    }
+    }*/
 }

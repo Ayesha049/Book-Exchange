@@ -14,7 +14,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
  */
 
 public class BuySellInstrumentedTest {
-    @Rule
+    /*@Rule
     public ActivityTestRule<BuySell> mBuySellTestRule = new
             ActivityTestRule<BuySell>(BuySell.class);
 
@@ -26,6 +26,6 @@ public class BuySellInstrumentedTest {
     @Test
     public void clickSellBook_opensSellingFormUi() throws Exception{
         onView(withId(R.id.sell_books)).perform(click());
-    }
+    }*/
 
 }

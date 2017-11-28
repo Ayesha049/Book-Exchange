@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.android.bookexchange1.Advertise;
 import com.example.android.bookexchange1.data.BookContract.PersonEntry;
 
 import java.security.Provider;
@@ -67,6 +68,16 @@ public class BookProvider extends ContentProvider {
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 cursor = database.query(PersonEntry.PERSON_TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
+                break;
+            case ADVERTISEMENTS:
+                cursor = database.query(BookContract.AdvertisementEntry.AD_TABLE_NAME, projection, selection,
+                        selectionArgs, null, null, sortOrder);
+                break;
+            case AD_ID:
+                selection = BookContract.AdvertisementEntry.AD_ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                cursor = database.query(BookContract.AdvertisementEntry.AD_TABLE_NAME, projection, selection,
+                        selectionArgs, null, null, sortOrder);
                 break;
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);

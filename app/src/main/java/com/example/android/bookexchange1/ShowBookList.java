@@ -26,11 +26,11 @@ public class ShowBookList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
 
-        addBooksToList();
+        //addBooksToList();
 
-        //books.add(new Book(R.drawable.boi,"name", "author", "200tk", "physics", "one@gmail.com"));
+       // books.add(new Book(R.drawable.boi,"name", "author", "200tk", "physics", "one@gmail.com"));
 
-//        books.add(new Book("The Art Of Photography", "Ayesha", R.drawable.boi, "400tk","novel","ria"));
+        books.add(new Book("The Art Of Photography", "Ayesha", "400tk","novel", "ria"));
         BookAdapter adapter = new BookAdapter(this, books);
 
         ListView listView = findViewById(R.id.list);
@@ -49,8 +49,8 @@ public class ShowBookList extends AppCompatActivity {
         });
     }
 
-    private void addBooksToList(){
-        String[] Projection = {
+    private void addBooksToList() {
+        /*String[] Projection = {
                 BookContract.AdvertisementEntry.COLUMN_AD_BOOK_NAME,
                 BookContract.AdvertisementEntry.COLUMN_AD_AUTHOR_NAME,
                 BookContract.AdvertisementEntry.COLUMN_AD_PRICE,
@@ -84,6 +84,6 @@ public class ShowBookList extends AppCompatActivity {
             byte[] image = cursor.getBlob(imageIndex);
 
             books.add(new Book(bookName, bookWriter, price, bookTag, personId, image));
-        }
+        }*/
     }
 }
