@@ -19,18 +19,18 @@ import java.util.ArrayList;
 
 public class ShowBookList extends AppCompatActivity {
 
-    final ArrayList<Book> books = new ArrayList<Book>();
+    final static ArrayList<Book> books = new ArrayList<Book>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
 
-        //addBooksToList();
+        addBooksToList();
 
        // books.add(new Book(R.drawable.boi,"name", "author", "200tk", "physics", "one@gmail.com"));
 
-        books.add(new Book("The Art Of Photography", "Ayesha", "400tk","novel", "ria"));
+        //books.add(new Book("The Art Of Photography", "Ayesha", "400tk","novel", "ria"));
         BookAdapter adapter = new BookAdapter(this, books);
 
         ListView listView = findViewById(R.id.list);
@@ -50,13 +50,13 @@ public class ShowBookList extends AppCompatActivity {
     }
 
     private void addBooksToList() {
-        /*String[] Projection = {
+        String[] Projection = {
                 BookContract.AdvertisementEntry.COLUMN_AD_BOOK_NAME,
                 BookContract.AdvertisementEntry.COLUMN_AD_AUTHOR_NAME,
                 BookContract.AdvertisementEntry.COLUMN_AD_PRICE,
                 BookContract.AdvertisementEntry.COLUMN_AD_BOOKTAG,
                 BookContract.AdvertisementEntry.COLUMN_AD_PERSON_ID,
-                BookContract.AdvertisementEntry.COLUMN_AD_IMAGE
+                //BookContract.AdvertisementEntry.COLUMN_AD_IMAGE
 
         };
 
@@ -68,22 +68,26 @@ public class ShowBookList extends AppCompatActivity {
                 null
         );
 
-        int bookNameIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_BOOK_NAME);
-        int bookWriterIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_AUTHOR_NAME);
-        int priceIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_PRICE);
-        int bookTagIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_BOOKTAG);
-        int personIdIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_PERSON_ID);
-        int imageIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_IMAGE);
+        cursor.moveToFirst();
 
         while (!cursor.isAfterLast()){
+            int bookNameIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_BOOK_NAME);
+            int bookWriterIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_AUTHOR_NAME);
+            int priceIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_PRICE);
+            int bookTagIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_BOOKTAG);
+            int personIdIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_PERSON_ID);
+            //int imageIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_IMAGE);
+
+
             String bookName = cursor.getString(bookNameIndex);
             String bookWriter = cursor.getString(bookWriterIndex);
             String price = cursor.getString(priceIndex);
             String bookTag = cursor.getString(bookTagIndex);
             String personId = cursor.getString(personIdIndex);
-            byte[] image = cursor.getBlob(imageIndex);
+            //byte[] image = cursor.getBlob(imageIndex);
 
-            books.add(new Book(bookName, bookWriter, price, bookTag, personId, image));
-        }*/
+            books.add(new Book(bookName, bookWriter, price, bookTag, personId));
+            cursor.moveToNext();
+        }
     }
 }
