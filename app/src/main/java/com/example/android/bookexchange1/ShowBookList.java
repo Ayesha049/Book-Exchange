@@ -2,6 +2,8 @@ package com.example.android.bookexchange1;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,13 +21,14 @@ import java.util.ArrayList;
 
 public class ShowBookList extends AppCompatActivity {
 
-    final static ArrayList<Book> books = new ArrayList<Book>();
+    static ArrayList<Book> books = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
 
+        books = new ArrayList<Book>();
         addBooksToList();
 
        // books.add(new Book(R.drawable.boi,"name", "author", "200tk", "physics", "one@gmail.com"));
@@ -56,7 +59,7 @@ public class ShowBookList extends AppCompatActivity {
                 BookContract.AdvertisementEntry.COLUMN_AD_PRICE,
                 BookContract.AdvertisementEntry.COLUMN_AD_BOOKTAG,
                 BookContract.AdvertisementEntry.COLUMN_AD_PERSON_ID,
-                //BookContract.AdvertisementEntry.COLUMN_AD_IMAGE
+                BookContract.AdvertisementEntry.COLUMN_AD_IMAGE
 
         };
 
@@ -76,7 +79,7 @@ public class ShowBookList extends AppCompatActivity {
             int priceIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_PRICE);
             int bookTagIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_BOOKTAG);
             int personIdIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_PERSON_ID);
-            //int imageIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_IMAGE);
+            int imageIndex = cursor.getColumnIndex(BookContract.AdvertisementEntry.COLUMN_AD_IMAGE);
 
 
             String bookName = cursor.getString(bookNameIndex);
@@ -84,9 +87,11 @@ public class ShowBookList extends AppCompatActivity {
             String price = cursor.getString(priceIndex);
             String bookTag = cursor.getString(bookTagIndex);
             String personId = cursor.getString(personIdIndex);
-            //byte[] image = cursor.getBlob(imageIndex);
+            byte[] image = cursor.getBlob(imageIndex);
 
-            books.add(new Book(bookName, bookWriter, price, bookTag, personId));
+            final Bitmap bmp = BitmapFactory.decodeByteArray(image, 0, image.length);
+
+            books.add(new Book(bookName, bookWriter, price, bookTag, personId,bmp));
             cursor.moveToNext();
         }
     }

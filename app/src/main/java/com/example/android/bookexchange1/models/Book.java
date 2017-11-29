@@ -1,5 +1,6 @@
 package com.example.android.bookexchange1.models;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -17,10 +18,12 @@ public class Book implements Parcelable {
     private String bookTag;
     private String personId;
     private byte[] image;
+    private Bitmap imageBitmap;
 
     public Book() { super(); }
 
-    public Book(String bookName, String bookWriter, String price, String tag, String idd) {
+    public Book(String bookName, String bookWriter, String price, String tag, String idd,
+                Bitmap bmp) {
         this.bookName = bookName;
         this.price = price;
         //this.imageId = imageId;
@@ -28,6 +31,7 @@ public class Book implements Parcelable {
         this.bookTag=tag;
         this.personId=idd;
         //this.image = image;
+        this.imageBitmap = bmp;
     }
 
    /* public Book(Integer imageId, String bookName, String bookWriter, String price, String tag,String idd) {
@@ -72,7 +76,8 @@ public class Book implements Parcelable {
     public void setImage(byte[] image) { this.image = image; }
     public byte[] getImage() { return image; }
 
-
+    public void setImageBitmap(Bitmap imageBitmap) { this.imageBitmap = imageBitmap; }
+    public Bitmap getImageBitmap() { return  imageBitmap; }
 
 
     public static Creator<Book> getCreator() { return CREATOR;}
