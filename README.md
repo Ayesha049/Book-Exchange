@@ -1,7 +1,7 @@
 # Book Exchange
 ## An Android bookstore app
 
-A basic bookstore app being developed in collaboration with the Learn IT, Girl mentorship program. The resource's planning folder includes the class diagram in addition to the UI / UX wireframes.
+A basic bookstore app being developed in collaboration with the Learn IT, Girl mentorship program. The resource's planning folder includes the class diagram in addition to the UI / UX wireframes and ERD diagram.
 
 __Student__: Ayesha Siddiqua (@Ayesha049)
 
@@ -14,6 +14,8 @@ __Mentor__: Jeanna Clark (@asclepiusgal)
 - Android: 
     - multi-screen activity
     - XML layouts
+    - sqliteDatabase
+    - unit testing
 
 *** 
 
