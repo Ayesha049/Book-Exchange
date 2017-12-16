@@ -21,6 +21,11 @@ import android.widget.Toast;
 
 import com.example.android.bookexchange1.data.BookContract;
 import com.example.android.bookexchange1.data.BookDbHelper;
+import com.example.android.bookexchange1.models.Book;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -41,6 +46,12 @@ public class SellingForm extends AppCompatActivity {
 
     final int REQUEST_CODE_GALLERY = 999;
 
+
+
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
+    private ChildEventListener mChildEventListener;
+
     //private BookDbHelper mDbHelper;
 
 
@@ -49,28 +60,30 @@ public class SellingForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_for_selling);
 
-        //mDbHelper = new BookDbHelper(this);
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+
+        mDatabaseReference = mFirebaseDatabase.getReference().child("Books");
 
         Button continueBuying = findViewById(R.id.form_for_selling_add_button);
         mbookName = findViewById(R.id.form_for_selling_book_name);
         mbookAuthor = findViewById(R.id.form_for_selling_author);
-        mbookimage = findViewById(R.id.form_for_selling_add_image);
+
         mbookprice = findViewById(R.id.form_for_selling_price);
         mbookTag = findViewById(R.id.form_for_selling_book_type);
 
-        mbookimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(SellingForm.this,"imageview clicked",Toast.LENGTH_LONG).show();
-                ActivityCompat.requestPermissions(SellingForm.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},REQUEST_CODE_GALLERY);
-
-            }
-        });
 
         continueBuying.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //insertBook();
+
+                Book bb = new Book(mbookName.getText().toString()
+                        ,mbookAuthor.getText().toString(),
+                        mbookprice.getText().toString(),
+                        mbookTag.getText().toString());
+                mDatabaseReference.push().setValue(bb);
+
+
                 Intent familyIntent = new Intent(SellingForm.this, ShowBookList.class);
                 startActivity(familyIntent);
 
@@ -78,90 +91,6 @@ public class SellingForm extends AppCompatActivity {
         });
 
 
-    }
-
-    public byte[] imageViewToByte(ImageView image) {
-        Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        return byteArray;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
-        if(requestCode == REQUEST_CODE_GALLERY){
-            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, REQUEST_CODE_GALLERY);
-            }
-            else {
-                Toast.makeText(getApplicationContext(), "You don't have permission to access file location!", Toast.LENGTH_SHORT).show();
-            }
-            return;
-        }
-
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (requestCode == REQUEST_CODE_GALLERY && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-
-            try {
-                InputStream inputStream = getContentResolver().openInputStream(uri);
-
-                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                mbookimage.setImageBitmap(bitmap);
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-
-
-
-    private void insertBook() {
-
-        //SQLiteDatabase database = mDbHelper.getWritableDatabase();
-
-        byte[] bookImageByte = imageViewToByte(mbookimage);
-
-        String bookName = mbookName.getText().toString().trim();
-        String AuthorName = mbookAuthor.getText().toString().trim();
-        String pr = mbookprice.getText().toString().trim();
-        int price = Integer.parseInt(pr);
-        String booktag = mbookTag.getText().toString().trim();
-        mpersonId = "111";
-
-        ContentValues values = new ContentValues();
-        values.put(BookContract.AdvertisementEntry.COLUMN_AD_BOOK_NAME, bookName);
-        values.put(BookContract.AdvertisementEntry.COLUMN_AD_AUTHOR_NAME, AuthorName);
-        values.put(BookContract.AdvertisementEntry.COLUMN_AD_IMAGE, bookImageByte);
-        values.put(BookContract.AdvertisementEntry.COLUMN_AD_PRICE, price);
-        values.put(BookContract.AdvertisementEntry.COLUMN_AD_BOOKTAG, booktag);
-        values.put(BookContract.AdvertisementEntry.COLUMN_AD_PERSON_ID, mpersonId);
-
-        //long ins = database.insert(BookContract.AdvertisementEntry.AD_TABLE_NAME, null, values);
-        //String str = Long.toString(ins);
-        //Toast.makeText(SellingForm.this,str,Toast.LENGTH_LONG).show();
-
-
-        Uri newUri = getContentResolver().insert(BookContract.AdvertisementEntry.AD_URI, values);
-        if (newUri == null) {
-            Toast.makeText(this, "Failed!",
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Successfully added to booklist",
-                    Toast.LENGTH_SHORT).show();
-        }
     }
 
 }

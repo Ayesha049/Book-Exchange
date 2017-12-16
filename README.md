@@ -16,20 +16,9 @@ __Mentor__: Jeanna Clark (@asclepiusgal)
     - XML layouts
     - sqliteDatabase
     - unit testing
+    - firebase
 
 *** 
-
-# _UI screenshots_
-
-- ![Home Page](resources/UI_screenshots/home_page.png)
-- ![Sign Up Page](resources/UI_screenshots/sign_up.png)
-- ![Log In Page](resources/UI_screenshots/log_in.png)
-- ![SignUp Confirmation Page](resources/UI_screenshots/confirmation.png)
-- ![Welcome Page](resources/UI_screenshots/welcome_page.png)
-- ![List of available books](resources/UI_screenshots/list_of_books.png)
-- ![sell Book Form](resources/UI_screenshots/sellbook_form.png)
-- ![Advertise Page](resources/UI_screenshots/advertise.png)
-- ![Checkout Page](resources/UI_screenshots/checkout.png)
 
 ## _Sources_
 
