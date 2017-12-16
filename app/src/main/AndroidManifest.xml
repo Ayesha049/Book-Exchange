@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".BuySell">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,51 +21,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".SignUp"
-            android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-        </activity>
-
-        <activity
-            android:name=".LogIn"
-            android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-        </activity>
-
-        <activity
-            android:name=".Confirmation"
-            android:label="@string/app_name"
-            android:parentActivityName=".SignUp">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-        </activity>
-
-
-        <activity
-            android:name=".BuySell"
-            android:label="@string/app_name"
-            android:parentActivityName=".LogIn">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-        </activity>
 
         <activity
             android:name=".UserProfile"
             android:label="@string/app_name"
-            android:parentActivityName=".LogIn">
+            android:parentActivityName=".BuySell">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -76,7 +36,7 @@
         <activity
             android:name=".ShowBookList"
             android:label="@string/app_name"
-            android:parentActivityName=".LogIn">
+            android:parentActivityName=".BuySell">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -88,7 +48,7 @@
         <activity
             android:name=".Advertise"
             android:label="@string/app_name"
-            android:parentActivityName=".LogIn">
+            android:parentActivityName=".ShowBookList">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -100,7 +60,7 @@
         <activity
             android:name=".CompleteOrder"
             android:label="@string/app_name"
-            android:parentActivityName=".LogIn">
+            android:parentActivityName=".Advertise">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -111,7 +71,7 @@
         <activity
             android:name=".SellingForm"
             android:label="@string/app_name"
-            android:parentActivityName=".LogIn">
+            android:parentActivityName=".BuySell">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

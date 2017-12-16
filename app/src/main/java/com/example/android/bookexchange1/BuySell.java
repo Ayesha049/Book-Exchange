@@ -2,10 +2,23 @@ package com.example.android.bookexchange1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Arrays;
 
 /**
  * Created by l on 11/3/17.
@@ -13,21 +26,29 @@ import android.widget.ImageView;
 
 public class BuySell extends AppCompatActivity {
 
+
+
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
+    private ChildEventListener mChildEventListener;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mFirebaseAuthListener;
+    public static final int RC_SIGN_IN=1;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_sell);
 
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
 
         ImageView logout = findViewById(R.id.log_out);
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent numbersIntent = new Intent(BuySell.this, MainActivity.class);
-                startActivity(numbersIntent);
-            }
-        });
+
 
 
         ImageView pro = findViewById(R.id.profile);
@@ -63,5 +84,79 @@ public class BuySell extends AppCompatActivity {
         });
 
 
+        mFirebaseAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // already signed in
+                    Toast.makeText(BuySell.this,"successful",Toast.LENGTH_LONG).show();
+                    //onSignedInInitialize(user.getDisplayName());
+                } else {
+                    // not signed in
+
+                    startActivityForResult(
+                            AuthUI.getInstance()
+                                    .createSignInIntentBuilder()
+                                    .setIsSmartLockEnabled(false)
+                                    .setAvailableProviders(
+                                            Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
+                                                    new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()
+                                            ))
+                                    .build(),
+                            RC_SIGN_IN);
+                }
+
+            }
+        };
+
+
     }
+
+    private void onSignedInInitialize(String displayName) {
+
+
+        if(mChildEventListener==null)
+        {
+            mChildEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+                public void onChildRemoved(DataSnapshot dataSnapshot) {}
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+                public void onCancelled(DatabaseError databaseError) {}
+            };
+
+            mDatabaseReference.addChildEventListener(mChildEventListener);
+        }
+    }
+
+    private void onSignedOutInitialize() {
+
+        if(mChildEventListener!=null)
+        {
+            mDatabaseReference.removeEventListener(mChildEventListener);
+            mChildEventListener=null;
+        }
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(mFirebaseAuthListener!=null)
+        {
+            mFirebaseAuth.removeAuthStateListener(mFirebaseAuthListener);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mFirebaseAuth.addAuthStateListener(mFirebaseAuthListener);
+    }
+
 }

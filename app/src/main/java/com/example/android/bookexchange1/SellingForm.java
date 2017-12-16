@@ -70,7 +70,7 @@ public class SellingForm extends AppCompatActivity {
         continueBuying.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertBook();
+                //insertBook();
                 Intent familyIntent = new Intent(SellingForm.this, ShowBookList.class);
                 startActivity(familyIntent);
 
@@ -139,7 +139,7 @@ public class SellingForm extends AppCompatActivity {
         String pr = mbookprice.getText().toString().trim();
         int price = Integer.parseInt(pr);
         String booktag = mbookTag.getText().toString().trim();
-        mpersonId = LogIn.loginId;
+        mpersonId = "111";
 
         ContentValues values = new ContentValues();
         values.put(BookContract.AdvertisementEntry.COLUMN_AD_BOOK_NAME, bookName);
