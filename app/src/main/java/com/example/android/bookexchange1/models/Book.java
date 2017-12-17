@@ -1,6 +1,6 @@
 package com.example.android.bookexchange1.models;
 
-import android.graphics.Bitmap;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,14 +8,14 @@ import android.os.Parcelable;
  * Created by l on 11/5/17.
  */
 
-public class Book  {
+public class Book implements Parcelable {
 
     private String bookname;
     private String authorname;
     private String price;
     private String booktype;
 
-    public Book() {}
+    public Book() {super();}
 
     public Book(String bookname,String authorname,String price,String booktype) {
         this.bookname=bookname;
@@ -58,5 +58,41 @@ public class Book  {
     public String getBookname() {
 
         return bookname;
+    }
+
+
+    public static Creator<Book> getCreator() { return CREATOR;}
+
+    public Book(Parcel parcel){
+        this.bookname = parcel.readString();
+        this.authorname = parcel.readString();
+        this.price = parcel.readString();
+        this.booktype = parcel.readString();
+    }
+
+
+    public static final Parcelable.Creator<Book> CREATOR
+            = new Parcelable.Creator<Book>() {
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(this.bookname);
+        parcel.writeString(this.authorname);
+        parcel.writeString(this.price);
+        parcel.writeString(this.booktype);
     }
 }

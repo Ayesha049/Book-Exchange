@@ -30,14 +30,10 @@ public class Advertise extends AppCompatActivity {
 
 
         Book myBook = (Book)getIntent().getParcelableExtra("Book");
-       /* Bitmap bmp = BitmapFactory.decodeByteArray(myBook.getImage(),0,myBook.getImage().length);
 
-        bookImageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, bookImageView.getWidth(),
-                bookImageView.getHeight(), false));*/
-        /*nameTextView.setText(myBook.getBookName());
-        authorTextView.setText(myBook.getBookWriter());*/
+        nameTextView.setText(myBook.getBookname());
+        authorTextView.setText(myBook.getAuthorname());
         priceTextView.setText(myBook.getPrice());
-        //bookImageView.setImageResource(myBook.getImageId());
 
         Button orderButton = findViewById(R.id.advertise_order);
 
