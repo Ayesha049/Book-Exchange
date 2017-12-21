@@ -1,16 +1,15 @@
-package com.example.android.bookexchange1.data;
+package com.ayeshaapp.android.bookexchange1.data;
 
 import android.database.sqlite.SQLiteOpenHelper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.android.bookexchange1.data.BookContract.PersonEntry;
+import com.ayeshaapp.android.bookexchange1.data.BookContract.PersonEntry;
 
-import com.example.android.bookexchange1.data.BookContract.AdvertisementEntry;
+import com.ayeshaapp.android.bookexchange1.data.BookContract.AdvertisementEntry;
 
-import com.example.android.bookexchange1.data.BookContract.OrderlistEntry;
+import com.ayeshaapp.android.bookexchange1.data.BookContract.OrderlistEntry;
 
 /**
  * Created by l on 11/17/17.

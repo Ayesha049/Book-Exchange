@@ -1,4 +1,4 @@
-package com.example.android.bookexchange1;
+package com.ayeshaapp.android.bookexchange1;
 
 import org.junit.Test;
 

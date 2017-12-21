@@ -1,4 +1,4 @@
-package com.example.android.bookexchange1;
+package com.ayeshaapp.android.bookexchange1;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

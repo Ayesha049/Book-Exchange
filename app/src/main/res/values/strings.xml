@@ -18,23 +18,23 @@
     <string name="cash_on_delivery">Cash On Delivery</string>
     <string name="credit_card">Credit Card</string>
     <string name="continue_buying">Continue buying</string>
-    <string name="checkout">checkout</string>
+    <string name="checkout" translatable="false">checkout</string>
 
-    <string name="congratulation">Congratulations!\nYour ID has been confirmed</string>
+    <string name="congratulation" translatable="false">Congratulations!\nYour ID has been confirmed</string>
 
 
-    <string name="add_image">Add Image</string>
-    <string name="type_of_book">Type of book</string>
-    <string name="add">add</string>
+    <string name="add_image" translatable="false">Add Image</string>
+    <string name="type_of_book" translatable="false">Type of book</string>
+    <string name="add" translatable="false">add</string>
 
-    <string name="email_id">Email ID</string>
-    <string name="password">Password</string>
-    <string name="create_an_account">Create an Account</string>
+    <string name="email_id" translatable="false">Email ID</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="create_an_account" translatable="false">Create an Account</string>
 
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="phone_number">Phone Number</string>
-    <string name="Confirm_password">Confirm Password</string>
+    <string name="first_name" translatable="false">First Name</string>
+    <string name="last_name" translatable="false">Last Name</string>
+    <string name="phone_number" translatable="false">Phone Number</string>
+    <string name="Confirm_password" translatable="false">Confirm Password</string>
     <string name="order">order</string>
 
 

@@ -1,4 +1,4 @@
-package com.example.android.bookexchange1.data;
+package com.ayeshaapp.android.bookexchange1.data;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -10,12 +10,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.example.android.bookexchange1.Advertise;
-import com.example.android.bookexchange1.data.BookContract.PersonEntry;
-
-import java.security.Provider;
 
 /**
  * Created by l on 11/17/17.
@@ -60,13 +54,13 @@ public class BookProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         switch (match) {
             case PERSONS:
-                cursor = database.query(PersonEntry.PERSON_TABLE_NAME, projection, selection, selectionArgs,
+                cursor = database.query(BookContract.PersonEntry.PERSON_TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             case PERSON_ID:
-                selection = PersonEntry.PERSON_ID + "=?";
+                selection = BookContract.PersonEntry.PERSON_ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
-                cursor = database.query(PersonEntry.PERSON_TABLE_NAME, projection, selection, selectionArgs,
+                cursor = database.query(BookContract.PersonEntry.PERSON_TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             case ADVERTISEMENTS:
@@ -111,7 +105,7 @@ public class BookProvider extends ContentProvider {
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        long id = database.insert(PersonEntry.PERSON_TABLE_NAME, null, values);
+        long id = database.insert(BookContract.PersonEntry.PERSON_TABLE_NAME, null, values);
         if (id == -1) {
             Log.e(LOG_TAG, "Failed to insert row for " + uri);
             return null;

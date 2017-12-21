@@ -1,18 +1,14 @@
-package com.example.android.bookexchange1;
+package com.ayeshaapp.android.bookexchange1;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.android.bookexchange1.data.BookContract;
-import com.example.android.bookexchange1.models.Book;
-import com.google.firebase.auth.FirebaseAuth;
+import com.ayeshaapp.android.bookexchange1.models.Book;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

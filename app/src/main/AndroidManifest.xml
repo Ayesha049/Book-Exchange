@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.bookexchange1">
+    package="com.ayeshaapp.android.bookexchange1">
 
     <!--These three permissions are for accessing image-->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BuySell">
+        <activity android:name="com.ayeshaapp.android.bookexchange1.BuySell">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,64 +23,64 @@
 
 
         <activity
-            android:name=".UserProfile"
+            android:name="com.ayeshaapp.android.bookexchange1.UserProfile"
             android:label="@string/app_name"
-            android:parentActivityName=".BuySell">
+            android:parentActivityName="com.ayeshaapp.android.bookexchange1.BuySell">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BuySell"/>
+                android:value="com.ayeshaapp.android.bookexchange1.BuySell"/>
         </activity>
 
 
         <activity
-            android:name=".ShowBookList"
+            android:name="com.ayeshaapp.android.bookexchange1.ShowBookList"
             android:label="@string/app_name"
-            android:parentActivityName=".BuySell">
+            android:parentActivityName="com.ayeshaapp.android.bookexchange1.BuySell">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BuySell"/>
-        </activity>
-
-
-
-        <activity
-            android:name=".Advertise"
-            android:label="@string/app_name"
-            android:parentActivityName=".ShowBookList">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ShowBookList"/>
+                android:value="com.ayeshaapp.android.bookexchange1.BuySell"/>
         </activity>
 
 
 
         <activity
-            android:name=".CompleteOrder"
+            android:name="com.ayeshaapp.android.bookexchange1.Advertise"
             android:label="@string/app_name"
-            android:parentActivityName=".Advertise">
+            android:parentActivityName="com.ayeshaapp.android.bookexchange1.ShowBookList">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Advertise"/>
+                android:value="com.ayeshaapp.android.bookexchange1.ShowBookList"/>
+        </activity>
+
+
+
+        <activity
+            android:name="com.ayeshaapp.android.bookexchange1.CompleteOrder"
+            android:label="@string/app_name"
+            android:parentActivityName="com.ayeshaapp.android.bookexchange1.Advertise">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ayeshaapp.android.bookexchange1.Advertise"/>
         </activity>
 
 
         <activity
-            android:name=".SellingForm"
+            android:name="com.ayeshaapp.android.bookexchange1.SellingForm"
             android:label="@string/app_name"
-            android:parentActivityName=".BuySell">
+            android:parentActivityName="com.ayeshaapp.android.bookexchange1.BuySell">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BuySell"/>
+                android:value="com.ayeshaapp.android.bookexchange1.BuySell"/>
         </activity>
 
         <provider
-            android:name=".data.BookProvider"
-            android:authorities="com.example.android.bookexchange1"
+            android:name="com.ayeshaapp.android.bookexchange1.data.BookProvider"
+            android:authorities="com.ayeshaapp.android.bookexchange1"
             android:exported="false" />
 
 

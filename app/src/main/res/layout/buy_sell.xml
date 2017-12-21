@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,7 +17,6 @@
             android:layout_alignParentLeft="true"
             android:padding="@dimen/activity_horizontal_margin"
             android:src="@drawable/ic_account_circle_black_48dp"
-
             />
 
 
@@ -29,9 +27,7 @@
             android:layout_alignParentRight="true"
             android:padding="@dimen/activity_horizontal_margin"
             android:src="@drawable/ic_exit_to_app_black_48dp"
-
             />
-
 
     </RelativeLayout>
 

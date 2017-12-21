@@ -1,4 +1,4 @@
-package com.example.android.bookexchange1;
+package com.ayeshaapp.android.bookexchange1;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,6 +47,12 @@ public class BuySell extends AppCompatActivity {
 
 
         ImageView logout = findViewById(R.id.log_out);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AuthUI.getInstance().signOut(BuySell.this);
+            }
+        });
 
 
 
@@ -90,7 +96,7 @@ public class BuySell extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // already signed in
-                    Toast.makeText(BuySell.this,"successful",Toast.LENGTH_LONG).show();
+
                     //onSignedInInitialize(user.getDisplayName());
                 } else {
                     // not signed in
@@ -111,6 +117,9 @@ public class BuySell extends AppCompatActivity {
         };
 
 
+
+
+
     }
 
     private void onSignedInInitialize(String displayName) {
@@ -120,10 +129,7 @@ public class BuySell extends AppCompatActivity {
         {
             mChildEventListener = new ChildEventListener() {
                 @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                }
-
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {}
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
                 public void onChildRemoved(DataSnapshot dataSnapshot) {}
                 public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
@@ -157,6 +163,22 @@ public class BuySell extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mFirebaseAuth.addAuthStateListener(mFirebaseAuthListener);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==RC_SIGN_IN)
+        {
+            if(resultCode== RESULT_OK)
+            {
+                Toast.makeText(BuySell.this,"signed in",Toast.LENGTH_LONG).show();
+            }
+            else if(resultCode== RESULT_CANCELED)
+            {
+                finish();
+            }
+        }
     }
 
 }

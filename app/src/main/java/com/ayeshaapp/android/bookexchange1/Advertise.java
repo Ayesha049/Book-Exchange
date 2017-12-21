@@ -1,16 +1,13 @@
-package com.example.android.bookexchange1;
+package com.ayeshaapp.android.bookexchange1;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.bookexchange1.models.Book;
+import com.ayeshaapp.android.bookexchange1.models.Book;
 
 /**
  * Created by l on 11/5/17.
@@ -40,7 +37,7 @@ public class Advertise extends AppCompatActivity {
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent familyIntent = new Intent(Advertise.this, CompleteOrder.class);
+                Intent familyIntent = new Intent(Advertise.this, com.ayeshaapp.android.bookexchange1.CompleteOrder.class);
                 startActivity(familyIntent);
             }
         });

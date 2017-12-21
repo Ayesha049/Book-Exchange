@@ -1,4 +1,4 @@
-package com.example.android.bookexchange1;
+package com.ayeshaapp.android.bookexchange1;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

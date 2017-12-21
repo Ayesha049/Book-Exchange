@@ -1,6 +1,5 @@
-package com.example.android.bookexchange1.data;
+package com.ayeshaapp.android.bookexchange1.data;
 
-import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
