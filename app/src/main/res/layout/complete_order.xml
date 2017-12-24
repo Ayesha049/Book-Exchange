@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight="1.5">
+            android:layout_weight="2">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -26,18 +26,24 @@
                 android:layout_margin="@dimen/ex_large_margin">
 
                 <TextView
+                    android:id="@+id/pricesummary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
                     android:text="@string/price"
                     android:textSize="@dimen/small_text"/>
                 <TextView
+                    android:id="@+id/deliverycahrge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
                     android:text="@string/delivery_charge"
                     android:textSize="@dimen/small_text"/>
                 <TextView
+                    android:id="@+id/totalprice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
                     android:text="@string/total"
                     android:textSize="@dimen/small_text"/>
 
@@ -50,7 +56,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:orientation="vertical">
 
             <TextView
@@ -68,42 +74,43 @@
                 android:layout_margin="@dimen/margin"
                 >
 
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <RadioButton
-                        android:id="@+id/complete_your_order_cashOnDelivery"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cash_on_delivery"
-                        />
-
-                    <RadioButton
-                        android:id="@+id/complete_your_order_creditCard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/credit_card" />
-
-                </RadioGroup>
-
 
             </LinearLayout>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/complete_your_order_cashOnDelivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/large_margin"
+                    android:text="@string/cash_on_delivery" />
+
+                <RadioButton
+                    android:id="@+id/complete_your_order_creditCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/large_margin"
+                    android:text="@string/credit_card" />
+
+            </RadioGroup>
 
         </LinearLayout>
 
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            >
 
             <Button
                 android:id="@+id/continue_buying"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_margin="@dimen/medium_margin"
                 android:text="@string/continue_buying" />
 
@@ -111,10 +118,11 @@
                 android:id="@+id/complete_your_order_checkout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_margin="@dimen/medium_margin"
                 android:text="@string/checkout" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 </ScrollView>

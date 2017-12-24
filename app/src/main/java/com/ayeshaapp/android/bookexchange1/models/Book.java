@@ -14,14 +14,16 @@ public class Book implements Parcelable {
     private String authorname;
     private String price;
     private String booktype;
+    private String photoUrl;
 
     public Book() {super();}
 
-    public Book(String bookname,String authorname,String price,String booktype) {
+    public Book(String bookname,String authorname,String price,String booktype,String photoUrl) {
         this.bookname=bookname;
         this.authorname=authorname;
         this.price=price;
         this.booktype=booktype;
+        this.photoUrl=photoUrl;
     }
 
     public String getBooktype() {
@@ -60,6 +62,13 @@ public class Book implements Parcelable {
         return bookname;
     }
 
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
 
     public static Creator<Book> getCreator() { return CREATOR;}
 
@@ -68,6 +77,7 @@ public class Book implements Parcelable {
         this.authorname = parcel.readString();
         this.price = parcel.readString();
         this.booktype = parcel.readString();
+        this.photoUrl=parcel.readString();
     }
 
 
@@ -94,5 +104,6 @@ public class Book implements Parcelable {
         parcel.writeString(this.authorname);
         parcel.writeString(this.price);
         parcel.writeString(this.booktype);
+        parcel.writeString(this.photoUrl);
     }
 }

@@ -1,18 +1,25 @@
 package com.ayeshaapp.android.bookexchange1;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ayeshaapp.android.bookexchange1.models.Book;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 /**
  * Created by l on 11/5/17.
@@ -25,15 +32,19 @@ public class SellingForm extends AppCompatActivity {
     private ImageView mbookimage;
     private EditText mbookprice;
     private EditText mbookTag;
-    private String mpersonId;
+    private Book mbookObject;
 
-    final int REQUEST_CODE_GALLERY = 999;
+
+    private static final int RC_PHOTO_PICKER =  2;
 
 
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildEventListener;
+
+    private FirebaseStorage mFirebaseStorage;
+    private StorageReference mPhotoStrorageReference;
 
     //private BookDbHelper mDbHelper;
 
@@ -47,12 +58,27 @@ public class SellingForm extends AppCompatActivity {
 
         mDatabaseReference = mFirebaseDatabase.getReference().child("Books");
 
+        mFirebaseStorage = FirebaseStorage.getInstance();
+        mPhotoStrorageReference = mFirebaseStorage.getReference().child("mybook_photos");
+
         Button continueBuying = findViewById(R.id.form_for_selling_add_button);
         mbookName = findViewById(R.id.form_for_selling_book_name);
         mbookAuthor = findViewById(R.id.form_for_selling_author);
-
+        mbookimage = findViewById(R.id.form_for_selling_add_image);
         mbookprice = findViewById(R.id.form_for_selling_price);
         mbookTag = findViewById(R.id.form_for_selling_book_type);
+
+        mbookObject = new Book();
+
+        mbookimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/jpeg");
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
+            }
+        });
 
 
         continueBuying.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +86,12 @@ public class SellingForm extends AppCompatActivity {
             public void onClick(View view) {
                 //insertBook();
 
-                Book bb = new Book(mbookName.getText().toString()
-                        ,mbookAuthor.getText().toString(),
-                        mbookprice.getText().toString(),
-                        mbookTag.getText().toString());
-                mDatabaseReference.push().setValue(bb);
+                 mbookObject.setBookname(mbookName.getText().toString());
+                 mbookObject.setAuthorname(mbookAuthor.getText().toString());
+                 mbookObject.setPrice(mbookprice.getText().toString());
+                 mbookObject.setBooktype(mbookTag.getText().toString());
+
+                 mDatabaseReference.push().setValue(mbookObject);
 
 
                 Intent familyIntent = new Intent(SellingForm.this, ShowBookList.class);
@@ -74,6 +101,30 @@ public class SellingForm extends AppCompatActivity {
         });
 
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==RC_PHOTO_PICKER && resultCode==RESULT_OK)
+        {
+            Uri SelectedImageUri = data.getData();
+            StorageReference photoRef =
+                    mPhotoStrorageReference.child(SelectedImageUri.getLastPathSegment());
+
+            photoRef.putFile(SelectedImageUri).addOnSuccessListener(
+                    this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            mbookObject.setPhotoUrl(taskSnapshot.getDownloadUrl().toString());
+                            Glide.with(mbookimage.getContext())
+                                    .load(taskSnapshot.getDownloadUrl().toString())
+                                    .into(mbookimage);
+                        }
+                    });
+        }
     }
 
 }

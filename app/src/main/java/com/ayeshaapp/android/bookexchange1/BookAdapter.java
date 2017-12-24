@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ayeshaapp.android.bookexchange1.models.Book;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -40,6 +42,13 @@ public class BookAdapter extends ArrayAdapter<Book> {
         nameTextView.setText(books.getBookname());
         TextView priceTextView = listItemView.findViewById(R.id.bookPrice);
         priceTextView.setText(books.getPrice());
+        ImageView bookphoto = listItemView.findViewById(R.id.image_item);
+
+        Glide.with(bookphoto.getContext())
+                .load(books.getPhotoUrl())
+                .into(bookphoto);
+
+
         return listItemView;
 
     }
