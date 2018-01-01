@@ -2,6 +2,7 @@ package com.ayeshaapp.android.bookexchange1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,6 +38,9 @@ public class ShowBookList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
 
+        FloatingActionButton fabb = findViewById(R.id.fab);
+
+
         books = new ArrayList<Book>();
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -63,6 +67,14 @@ public class ShowBookList extends AppCompatActivity {
                 startActivity(familyIntent);
             }
         });
+
+        fabb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent numbersIntent = new Intent(ShowBookList.this, SearchBarActivity.class);
+                startActivity(numbersIntent);
+            }
+        });
     }
 
     private void onSignedInInitialize() {
@@ -72,6 +84,7 @@ public class ShowBookList extends AppCompatActivity {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Book fm = dataSnapshot.getValue(Book.class);
+                    //books.add(fm);
                     madapter.add(fm);
                 }
 

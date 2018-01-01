@@ -9,7 +9,7 @@
     <string name="price">price : 20/=</string>
     <string name="face" translatable="false">Face Cake :3</string>
     <string name="welcome">welcome!</string>
-    <string name="select">Select what you want.</string>
+    <string name="select">Select what you want</string>
     <string name="buy_book">buy books</string>
     <string name="sell_book">Sell Books</string>
     <string name="delivery_charge">Delivery Charge : 50 tk</string>

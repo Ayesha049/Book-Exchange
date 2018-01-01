@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -51,6 +55,18 @@
 
             />
 
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:orientation="vertical">
         <TextView
 
             android:layout_width="wrap_content"
@@ -60,27 +76,17 @@
             android:textColor="@color/category_numbers"
             android:textSize="@dimen/medium_text" />
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin"
-        android:layout_weight="2"
-        android:gravity="center"
-        android:orientation="vertical">
-
         <Button
             android:id="@+id/buy_books"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
             android:padding="@dimen/large_margin"
             android:text="@string/buy_book" />
 
         <Button
             android:id="@+id/sell_books"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:padding="@dimen/large_margin"
             android:text="@string/sell_book" />
@@ -89,3 +95,5 @@
     </LinearLayout>
 
 </LinearLayout>
+
+</ScrollView>
