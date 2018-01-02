@@ -28,6 +28,7 @@ import java.util.List;
 public class BuySell extends AppCompatActivity {
 
 
+    public static String finalUid = "mee";
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
@@ -95,6 +96,7 @@ public class BuySell extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
                 List<AuthUI.IdpConfig> providers = Arrays.asList(
                         new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
                         new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build());
@@ -102,7 +104,7 @@ public class BuySell extends AppCompatActivity {
 
                 if (user != null) {
                     // already signed in
-
+                    finalUid= user.getUid();
                     //onSignedInInitialize(user.getDisplayName());
                 } else {
                     // not signed in

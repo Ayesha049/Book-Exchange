@@ -105,20 +105,23 @@ public class SearchBarActivity extends AppCompatActivity {
                 * */
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
-                    String full_name = snapshot.child("bookname").getValue(String.class);
-                    String user_name = snapshot.child("authorname").getValue(String.class);
-                    String profile_pic = snapshot.child("photoUrl").getValue(String.class);
+                    for(DataSnapshot mysnapshot : snapshot.getChildren())
+                    {
+                        String full_name = mysnapshot.child("bookname").getValue(String.class);
+                        String user_name = mysnapshot.child("authorname").getValue(String.class);
+                        String profile_pic = mysnapshot.child("photoUrl").getValue(String.class);
 
-                    if (full_name.toLowerCase().contains(searchedString.toLowerCase())) {
-                        Booknamelist.add(full_name);
-                        Authorlist.add(user_name);
-                        BookPiclist.add(profile_pic);
-                        counter++;
-                    } else if (user_name.toLowerCase().contains(searchedString.toLowerCase())) {
-                        Booknamelist.add(full_name);
-                        Authorlist.add(user_name);
-                        BookPiclist.add(profile_pic);
-                        counter++;
+                        if (full_name.toLowerCase().contains(searchedString.toLowerCase())) {
+                            Booknamelist.add(full_name);
+                            Authorlist.add(user_name);
+                            BookPiclist.add(profile_pic);
+                            counter++;
+                        } else if (user_name.toLowerCase().contains(searchedString.toLowerCase())) {
+                            Booknamelist.add(full_name);
+                            Authorlist.add(user_name);
+                            BookPiclist.add(profile_pic);
+                            counter++;
+                        }
                     }
 
                     /*
