@@ -16,14 +16,14 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 /**
- * Created by l on 11/5/17.
+ * Created by l on 1/12/18.
  */
 
-public class BookAdapter extends ArrayAdapter<Book> {
+public class MyBookAdapter extends ArrayAdapter<Book> {
 
     private static final String LOG_TAG = BookAdapter.class.getSimpleName();
 
-    public BookAdapter(Activity context, ArrayList<Book> books) {
+    public MyBookAdapter(Activity context, ArrayList<Book> books) {
         super(context, 0, books);
     }
 
@@ -38,7 +38,19 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
         Book books = getItem(position);
         TextView tt = listItemView.findViewById(R.id.noti);
-        tt.setVisibility(TextView.INVISIBLE);
+
+        if(books.getCount()==null || books.getCount()<=0)
+        {
+
+            tt.setVisibility(TextView.INVISIBLE);
+        }
+        else
+        {
+            tt.setText(books.getCount().toString());
+            tt.setVisibility(TextView.VISIBLE);
+        }
+
+
         TextView nameTextView = listItemView.findViewById(R.id.bookName);
         nameTextView.setText(books.getBookname());
         TextView priceTextView = listItemView.findViewById(R.id.bookPrice);

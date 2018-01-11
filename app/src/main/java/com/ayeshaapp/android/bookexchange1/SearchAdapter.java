@@ -32,6 +32,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             profileImage = (ImageView) itemView.findViewById(R.id.image_item);
             full_name = (TextView) itemView.findViewById(R.id.bookName);
             user_name = (TextView) itemView.findViewById(R.id.bookPrice);
+            TextView tt = itemView.findViewById(R.id.noti);
+            tt.setVisibility(TextView.INVISIBLE);
         }
 
 

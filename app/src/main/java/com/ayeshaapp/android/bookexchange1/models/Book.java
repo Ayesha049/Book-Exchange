@@ -15,15 +15,20 @@ public class Book implements Parcelable {
     private String price;
     private String booktype;
     private String photoUrl;
+    private String email;
+    private String uidd;
+    private Integer count;
 
     public Book() {super();}
 
-    public Book(String bookname,String authorname,String price,String booktype,String photoUrl) {
+    public Book(String bookname,String authorname,String price,String booktype,String photoUrl, String email) {
         this.bookname=bookname;
         this.authorname=authorname;
         this.price=price;
         this.booktype=booktype;
         this.photoUrl=photoUrl;
+        this.email=email;
+        count=0;
     }
 
     public String getBooktype() {
@@ -62,6 +67,35 @@ public class Book implements Parcelable {
         return bookname;
     }
 
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public void increment()
+    {
+        this.count ++;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUidd() {
+        return uidd;
+    }
+
+    public void setUidd(String uidd) {
+        this.uidd = uidd;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPhotoUrl() {
         return photoUrl;
     }
@@ -78,6 +112,9 @@ public class Book implements Parcelable {
         this.price = parcel.readString();
         this.booktype = parcel.readString();
         this.photoUrl=parcel.readString();
+        this.email=parcel.readString();
+        this.uidd=parcel.readString();
+        this.count=parcel.readInt();
     }
 
 
@@ -105,5 +142,8 @@ public class Book implements Parcelable {
         parcel.writeString(this.price);
         parcel.writeString(this.booktype);
         parcel.writeString(this.photoUrl);
+        parcel.writeString(this.email);
+        parcel.writeString(this.uidd);
+        parcel.writeInt(this.count);
     }
 }

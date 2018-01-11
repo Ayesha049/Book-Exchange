@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/add_button"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="add Your Book"
-            />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/search" />
+
+            <EditText
+                android:id="@+id/add_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="Search Book..." />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/list"
@@ -35,7 +45,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/large_margin"
-        android:src="@drawable/search"/>
+        android:src="@drawable/add"
+        app:backgroundTint = "@color/category_phrases"/>
 
 
 

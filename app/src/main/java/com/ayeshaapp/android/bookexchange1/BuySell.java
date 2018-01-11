@@ -29,6 +29,7 @@ public class BuySell extends AppCompatActivity {
 
 
     public static String finalUid = "mee";
+    public static String finalemail = "mee";
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
@@ -105,6 +106,7 @@ public class BuySell extends AppCompatActivity {
                 if (user != null) {
                     // already signed in
                     finalUid= user.getUid();
+                    finalemail = user.getEmail();
                     //onSignedInInitialize(user.getDisplayName());
                 } else {
                     // not signed in

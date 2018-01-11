@@ -22,6 +22,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +45,7 @@ public class ShowMyBookList extends AppCompatActivity {
 
     private DatabaseReference mRef;
     private ChildEventListener mLis;
-    private BookAdapter madapter;
+    private MyBookAdapter madapter;
     private String muid;
     private FirebaseAuth.AuthStateListener mFirebaseAuthListener;
 
@@ -59,7 +61,7 @@ public class ShowMyBookList extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         mDatabaseReference = mFirebaseDatabase.getReference().child("Books").child(BuySell.finalUid);
-        madapter = new BookAdapter(this, books);
+        madapter = new MyBookAdapter(this, books);
 
         ListView listView = findViewById(R.id.my_booklist);
 
@@ -68,16 +70,30 @@ public class ShowMyBookList extends AppCompatActivity {
 
         onSignedInInitialize();
 
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Book Books = books.get(position);;
+                Book Books = books.get(position);
+                books.remove(Books);
+                madapter.notifyDataSetChanged();
+                Query applesQuery = mDatabaseReference.orderByChild("bookname").equalTo(Books.getBookname());
 
-                Intent familyIntent = new Intent(ShowMyBookList.this, Advertise.class);
-                familyIntent.putExtra("Book",Books);
-                startActivity(familyIntent);
+                applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+                            appleSnapshot.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
             }
-        });*/
+        });
 
         fabb.setOnClickListener(new View.OnClickListener() {
             @Override

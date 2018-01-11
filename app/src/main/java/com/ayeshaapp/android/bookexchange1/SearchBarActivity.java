@@ -127,7 +127,7 @@ public class SearchBarActivity extends AppCompatActivity {
                     /*
                     * Get maximum of 15 searched results only
                     * */
-                    if (counter == 15)
+                    if (counter == 100)
                         break;
                 }
 

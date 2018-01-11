@@ -96,6 +96,9 @@ public class SellingForm extends AppCompatActivity {
                  mbookObject.setAuthorname(mbookAuthor.getText().toString());
                  mbookObject.setPrice(mbookprice.getText().toString());
                  mbookObject.setBooktype(mbookTag.getText().toString());
+                 mbookObject.setEmail(BuySell.finalemail);
+                 mbookObject.setCount(0);
+                 mbookObject.setUidd(BuySell.finalUid);
 
                  mDatabaseReference.child(BuySell.finalUid).push().setValue(mbookObject);
                 //mDatabaseReference.child(mbookTag.getText().toString()).push().setValue(mbookObject);

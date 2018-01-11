@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class ShowBookList extends AppCompatActivity {
         setContentView(R.layout.book_list);
 
         FloatingActionButton fabb = findViewById(R.id.fab);
+        EditText add_btn = findViewById(R.id.add_button);
 
 
         books = new ArrayList<Book>();
@@ -60,6 +62,7 @@ public class ShowBookList extends AppCompatActivity {
         listView.setAdapter(madapter);
 
 
+
         onSignedInInitialize();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -73,7 +76,7 @@ public class ShowBookList extends AppCompatActivity {
             }
         });
 
-        fabb.setOnClickListener(new View.OnClickListener() {
+        add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent numbersIntent = new Intent(ShowBookList.this, SearchBarActivity.class);
@@ -81,9 +84,9 @@ public class ShowBookList extends AppCompatActivity {
             }
         });
 
-        Button add_btn = findViewById(R.id.add_button);
 
-        add_btn.setOnClickListener(new View.OnClickListener() {
+
+        fabb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent numbersIntent = new Intent(ShowBookList.this, SellingForm.class);
