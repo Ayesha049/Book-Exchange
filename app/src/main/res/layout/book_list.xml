@@ -14,9 +14,12 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/search" />
+                android:layout_width="39dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:src="@drawable/search1" />
 
             <EditText
                 android:id="@+id/add_button"
@@ -46,7 +49,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/large_margin"
         android:src="@drawable/add"
-        app:backgroundTint = "@color/category_phrases"/>
+        app:backgroundTint = "@color/floting_color"/>
 
 
 

@@ -36,6 +36,22 @@
     <string name="phone_number" translatable="false">Phone Number</string>
     <string name="Confirm_password" translatable="false">Confirm Password</string>
     <string name="order">order</string>
+    <string name="book_type">Select Book Type</string>
+
+    <string-array name="type_of_book_array" translatable="false">
+        <item>CSE</item>
+        <item>BME</item>
+        <item>EEE</item>
+        <item>MME</item>
+        <item>CHE</item>
+        <item>CE</item>
+        <item>WRE</item>
+        <item>IPE</item>
+        <item>ME</item>
+        <item>NAME</item>
+        <item>URP</item>
+        <item>Others</item>
+    </string-array>
 
 
 </resources>

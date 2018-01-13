@@ -1,5 +1,7 @@
 package com.ayeshaapp.android.bookexchange1;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -12,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.util.Util;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +31,8 @@ import java.util.ArrayList;
  * Created by l on 1/2/18.
  */
 
-public class SearchBarActivity extends AppCompatActivity {
+
+public class SearchBarActivity extends AppCompatActivity implements RecyclerViewClickListener {
     EditText search_edit_text;
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
@@ -60,6 +64,11 @@ public class SearchBarActivity extends AppCompatActivity {
         Authorlist = new ArrayList<>();
         BookPiclist = new ArrayList<>();
 
+        //
+
+        /*Intent i = new Intent(this, Advertise.class);
+        startActivity(i);*/
+
         search_edit_text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -73,6 +82,7 @@ public class SearchBarActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     setAdapter(s.toString());
+
                 } else {
                     /*
                     * Clear the list when editText is empty
@@ -84,6 +94,8 @@ public class SearchBarActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //searchAdapter.setClickListener(this);
     }
 
     private void setAdapter(final String searchedString) {
@@ -132,6 +144,7 @@ public class SearchBarActivity extends AppCompatActivity {
                 }
 
                 searchAdapter = new SearchAdapter(SearchBarActivity.this, Booknamelist, Authorlist, BookPiclist);
+                searchAdapter.setClickListener(SearchBarActivity.this);
                 recyclerView.setAdapter(searchAdapter);
 
             }
@@ -141,5 +154,11 @@ public class SearchBarActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
+
+
     }
 }

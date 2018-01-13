@@ -78,13 +78,18 @@
                 android:hint="@string/price"
                 android:inputType="number" />
 
-            <EditText
-                android:id="@+id/form_for_selling_book_type"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin"
-                android:hint="@string/type_of_book"
-                android:inputType="textMultiLine" />
+                android:layout_marginLeft="10dp"
+                android:text="@string/book_type"
+                android:textSize="@dimen/small_text"/>
+
+            <Spinner
+                android:id="@+id/form_for_selling_book_type_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/type_of_book_array"/>
 
 
         </LinearLayout>

@@ -49,55 +49,85 @@ public class Advertise extends AppCompatActivity {
                 .into(bookImage);
 
         Button orderButton = findViewById(R.id.advertise_order);
-
-        orderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*Intent familyIntent = new Intent(Advertise.this, CompleteOrder.class);
-                familyIntent.putExtra("CBook",myBook);
-
-                startActivity(familyIntent);*/
-
-                myBook.increment();
-
-                DatabaseReference c1v2= FirebaseDatabase.getInstance().getReference().child("Books");
-                Query applesQuery = c1v2.child(myBook.getUidd()).orderByChild("bookname").equalTo(myBook.getBookname());
-                applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
-                            appleSnapshot.getRef().setValue(myBook);
+        if(myBook.getUidd().equals(BuySell.finalUid))
+        {
+            orderButton.setText("Delete");
+            orderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DatabaseReference c1v2= FirebaseDatabase.getInstance().getReference().child("Books");
+                    Query applesQuery = c1v2.child(myBook.getUidd()).orderByChild("bookname").equalTo(myBook.getBookname());
+                    applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+                                appleSnapshot.getRef().removeValue();
+                            }
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
 
 
-                String[] TO = {myBook.getEmail()};
-                String[] CC = {""};
-                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                emailIntent.setData(Uri.parse("mailto:"));
-                emailIntent.setType("text/plain");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-                emailIntent.putExtra(Intent.EXTRA_CC, CC);
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+                        }
+                    });
 
-                try {
-                    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                    finish();
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(Advertise.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                    Intent numbersIntent = new Intent(Advertise.this, ShowBookList.class);
+                    startActivity(numbersIntent);
                 }
+            });
+        }
+        else
+        {
+            orderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
 
-            }
-        });
+
+
+                    String[] TO = {myBook.getEmail()};
+                    String[] CC = {""};
+                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+                    emailIntent.setData(Uri.parse("mailto:"));
+                    emailIntent.setType("text/plain");
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+                    emailIntent.putExtra(Intent.EXTRA_CC, CC);
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+
+                    try {
+                        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                        finish();
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        Toast.makeText(Advertise.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                    myBook.increment();
+
+                    DatabaseReference c1v2= FirebaseDatabase.getInstance().getReference().child("Books");
+                    Query applesQuery = c1v2.child(myBook.getUidd()).orderByChild("bookname").equalTo(myBook.getBookname());
+                    applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+                                appleSnapshot.getRef().setValue(myBook);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+                }
+            });
+        }
+
 
 
     }

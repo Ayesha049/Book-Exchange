@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ayeshaapp.android.bookexchange1.models.Book;
@@ -34,7 +36,7 @@ public class SellingForm extends AppCompatActivity {
     private EditText mbookAuthor;
     private ImageView mbookimage;
     private EditText mbookprice;
-    private EditText mbookTag;
+    private String mbookTag;
     private Book mbookObject;
 
 
@@ -67,12 +69,25 @@ public class SellingForm extends AppCompatActivity {
         mFirebaseStorage = FirebaseStorage.getInstance();
         mPhotoStrorageReference = mFirebaseStorage.getReference().child("mybook_photos");
 
+        Spinner spinner = (Spinner) findViewById(R.id.form_for_selling_book_type_spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mbookTag = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         Button continueBuying = findViewById(R.id.form_for_selling_add_button);
         mbookName = findViewById(R.id.form_for_selling_book_name);
         mbookAuthor = findViewById(R.id.form_for_selling_author);
         mbookimage = findViewById(R.id.form_for_selling_add_image);
         mbookprice = findViewById(R.id.form_for_selling_price);
-        mbookTag = findViewById(R.id.form_for_selling_book_type);
+        //mbookTag = findViewById(R.id.form_for_selling_book_type);
 
         mbookObject = new Book();
 
@@ -95,7 +110,7 @@ public class SellingForm extends AppCompatActivity {
                  mbookObject.setBookname(mbookName.getText().toString());
                  mbookObject.setAuthorname(mbookAuthor.getText().toString());
                  mbookObject.setPrice(mbookprice.getText().toString());
-                 mbookObject.setBooktype(mbookTag.getText().toString());
+                 mbookObject.setBooktype(mbookTag);
                  mbookObject.setEmail(BuySell.finalemail);
                  mbookObject.setCount(0);
                  mbookObject.setUidd(BuySell.finalUid);

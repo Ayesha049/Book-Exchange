@@ -6,6 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -36,9 +39,6 @@ import java.util.List;
 public class ShowMyBookList extends AppCompatActivity {
 
     static ArrayList<Book> books = null;
-
-
-
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildEventListener;
@@ -67,6 +67,8 @@ public class ShowMyBookList extends AppCompatActivity {
 
         listView.setAdapter(madapter);
 
+        registerForContextMenu(listView);
+
 
         onSignedInInitialize();
 
@@ -74,6 +76,66 @@ public class ShowMyBookList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Book Books = books.get(position);
+                Intent familyIntent = new Intent(ShowMyBookList.this, Advertise.class);
+                familyIntent.putExtra("Book",Books);
+                startActivity(familyIntent);
+
+            }
+        });
+
+
+
+        fabb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent numbersIntent = new Intent(ShowMyBookList.this, SellingForm.class);
+                startActivity(numbersIntent);
+            }
+        });
+
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.deletion_menu, menu);
+    }
+
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Integer mposition = info.position;
+        //Log.v("showboklist........", mposition.toString());
+        int id = item.getItemId();
+        switch (id){
+            case R.id.remove_notification:
+                final Book myBook = books.get(mposition);
+                myBook.setCount(0);
+                madapter.notifyDataSetChanged();
+                DatabaseReference c1v2= FirebaseDatabase.getInstance().getReference().child("Books");
+                Query applesQuery1 = c1v2.child(myBook.getUidd()).orderByChild("bookname").equalTo(myBook.getBookname());
+                applesQuery1.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+                            appleSnapshot.getRef().setValue(myBook);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                break;
+            case R.id.delete_menu:
+
+                Book Books = books.get(mposition);
                 books.remove(Books);
                 madapter.notifyDataSetChanged();
                 Query applesQuery = mDatabaseReference.orderByChild("bookname").equalTo(Books.getBookname());
@@ -91,19 +153,14 @@ public class ShowMyBookList extends AppCompatActivity {
 
                     }
                 });
-
-            }
-        });
-
-        fabb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent numbersIntent = new Intent(ShowMyBookList.this, SellingForm.class);
-                startActivity(numbersIntent);
-            }
-        });
-
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
+
+
 
     private void onSignedInInitialize() {
         if(mChildEventListener==null)

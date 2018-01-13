@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -63,12 +66,13 @@ public class ShowBookList extends AppCompatActivity {
 
 
 
+
         onSignedInInitialize();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Book Books = books.get(position);;
+                Book Books = books.get(position);
 
                 Intent familyIntent = new Intent(ShowBookList.this, Advertise.class);
                 familyIntent.putExtra("Book",Books);
@@ -94,6 +98,38 @@ public class ShowBookList extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mymenu,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        switch (id){
+            case R.id.menu_profile:
+                Intent familyIntent = new Intent(ShowBookList.this, UserProfile.class);
+                startActivity(familyIntent);
+                break;
+            case R.id.menu_logout:
+                Intent familyInt = new Intent(ShowBookList.this, BuySell.class);
+                startActivity(familyInt);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+
+
+
 
     private void onSignedInInitialize() {
         if(mChildEventListener==null)
