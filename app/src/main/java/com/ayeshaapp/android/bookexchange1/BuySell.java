@@ -104,13 +104,9 @@ public class BuySell extends AppCompatActivity {
 
 
                 if (user != null) {
-                    // already signed in
                     finalUid= user.getUid();
                     finalemail = user.getEmail();
-                    //onSignedInInitialize(user.getDisplayName());
                 } else {
-                    // not signed in
-
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()

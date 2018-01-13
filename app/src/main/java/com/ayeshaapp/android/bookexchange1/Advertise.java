@@ -39,7 +39,7 @@ public class Advertise extends AppCompatActivity {
         ImageView bookImage = findViewById(R.id.show_book_to_order_bookPic);
 
 
-         myBook = (Book)getIntent().getParcelableExtra("Book");
+        myBook = (Book)getIntent().getParcelableExtra("Book");
 
         nameTextView.setText(myBook.getBookname());
         authorTextView.setText(myBook.getAuthorname());

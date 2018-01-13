@@ -12,10 +12,13 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ayeshaapp.android.bookexchange1.models.Book;
 import com.bumptech.glide.util.Util;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,42 +35,41 @@ import java.util.ArrayList;
  */
 
 
-public class SearchBarActivity extends AppCompatActivity implements RecyclerViewClickListener {
-    EditText search_edit_text;
-    RecyclerView recyclerView;
-    DatabaseReference databaseReference;
-    FirebaseUser firebaseUser;
-    ArrayList<String> Booknamelist;
-    ArrayList<String> Authorlist;
-    ArrayList<String> BookPiclist;
-    SearchAdapter searchAdapter;
+public class SearchBarActivity extends AppCompatActivity {
+    private EditText search_edit_text;
+    private DatabaseReference databaseReference;
+    private FirebaseUser firebaseUser;
+    private static ArrayList<Book> sbooks = null;
+    private BookAdapter searchAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_bar);
 
+
+
+        ListView slistView = findViewById(R.id.list);
+        sbooks = new ArrayList<Book>();
+
         search_edit_text = (EditText) findViewById(R.id.search_edit_text);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        searchAdapter = new BookAdapter(this, sbooks);
+        slistView.setAdapter(searchAdapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        slistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Book Books = sbooks.get(position);
 
-        /*
-        * Create a array list for each node you want to use
-        * */
-        Booknamelist = new ArrayList<>();
-        Authorlist = new ArrayList<>();
-        BookPiclist = new ArrayList<>();
+                Intent familyIntent = new Intent(SearchBarActivity.this, Advertise.class);
+                familyIntent.putExtra("Book",Books);
+                startActivity(familyIntent);
+            }
+        });
 
-        //
-
-        /*Intent i = new Intent(this, Advertise.class);
-        startActivity(i);*/
 
         search_edit_text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -81,71 +83,50 @@ public class SearchBarActivity extends AppCompatActivity implements RecyclerView
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
-                    setAdapter(s.toString());
+                    setttt(s.toString());
 
                 } else {
-                    /*
-                    * Clear the list when editText is empty
-                    * */
-                    Booknamelist.clear();
-                    Authorlist.clear();
-                    BookPiclist.clear();
-                    recyclerView.removeAllViews();
+                    sbooks.clear();
+                    searchAdapter.notifyDataSetChanged();
                 }
             }
         });
 
-        //searchAdapter.setClickListener(this);
+
     }
 
-    private void setAdapter(final String searchedString) {
+    private void setttt(final String searchedString) {
         databaseReference.child("Books").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                /*
-                * Clear the list for every new search
-                * */
-                Booknamelist.clear();
-                Authorlist.clear();
-                BookPiclist.clear();
-                recyclerView.removeAllViews();
+
+                sbooks.clear();
+                searchAdapter.notifyDataSetChanged();
 
                 int counter = 0;
-
-                /*
-                * Search all users for matching searched string
-                * */
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
                     for(DataSnapshot mysnapshot : snapshot.getChildren())
                     {
+                        Book obj =  mysnapshot.getValue(Book.class);
                         String full_name = mysnapshot.child("bookname").getValue(String.class);
                         String user_name = mysnapshot.child("authorname").getValue(String.class);
                         String profile_pic = mysnapshot.child("photoUrl").getValue(String.class);
 
                         if (full_name.toLowerCase().contains(searchedString.toLowerCase())) {
-                            Booknamelist.add(full_name);
-                            Authorlist.add(user_name);
-                            BookPiclist.add(profile_pic);
+                            sbooks.add(obj);
+                            searchAdapter.notifyDataSetChanged();
                             counter++;
                         } else if (user_name.toLowerCase().contains(searchedString.toLowerCase())) {
-                            Booknamelist.add(full_name);
-                            Authorlist.add(user_name);
-                            BookPiclist.add(profile_pic);
+                            sbooks.add(obj);
+                            searchAdapter.notifyDataSetChanged();
                             counter++;
                         }
                     }
 
-                    /*
-                    * Get maximum of 15 searched results only
-                    * */
                     if (counter == 100)
                         break;
                 }
-
-                searchAdapter = new SearchAdapter(SearchBarActivity.this, Booknamelist, Authorlist, BookPiclist);
-                searchAdapter.setClickListener(SearchBarActivity.this);
-                recyclerView.setAdapter(searchAdapter);
 
             }
 
@@ -156,9 +137,4 @@ public class SearchBarActivity extends AppCompatActivity implements RecyclerView
         });
     }
 
-    @Override
-    public void recyclerViewListClicked(View v, int position) {
-
-
-    }
 }

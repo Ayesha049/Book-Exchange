@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/testtttt"
             android:layout_width="39dp"
             android:layout_height="32dp"
             android:layout_marginTop="10dp"
@@ -25,9 +26,11 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <ListView
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        />
 
 </LinearLayout>
