@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/edit_profile_menu"
+        android:title="Edit Profile"
+        app:showAsAction="never"></item>
+    <item android:id="@+id/reset_password_menu"
+        android:title="Reset Password"
+        app:showAsAction="never"></item>
+</menu>

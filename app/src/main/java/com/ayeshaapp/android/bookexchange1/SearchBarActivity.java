@@ -111,13 +111,18 @@ public class SearchBarActivity extends AppCompatActivity {
                         Book obj =  mysnapshot.getValue(Book.class);
                         String full_name = mysnapshot.child("bookname").getValue(String.class);
                         String user_name = mysnapshot.child("authorname").getValue(String.class);
-                        String profile_pic = mysnapshot.child("photoUrl").getValue(String.class);
+                        String type = mysnapshot.child("booktype").getValue(String.class);
 
                         if (full_name.toLowerCase().contains(searchedString.toLowerCase())) {
                             sbooks.add(obj);
                             searchAdapter.notifyDataSetChanged();
                             counter++;
                         } else if (user_name.toLowerCase().contains(searchedString.toLowerCase())) {
+                            sbooks.add(obj);
+                            searchAdapter.notifyDataSetChanged();
+                            counter++;
+                        }
+                        else if (type.toLowerCase().contains(searchedString.toLowerCase())) {
                             sbooks.add(obj);
                             searchAdapter.notifyDataSetChanged();
                             counter++;

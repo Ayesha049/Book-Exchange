@@ -1,6 +1,7 @@
 package com.ayeshaapp.android.bookexchange1;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -105,22 +106,32 @@ public class SellingForm extends AppCompatActivity {
         continueBuying.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //insertBook();
 
-                 mbookObject.setBookname(mbookName.getText().toString());
-                 mbookObject.setAuthorname(mbookAuthor.getText().toString());
-                 mbookObject.setPrice(mbookprice.getText().toString());
-                 mbookObject.setBooktype(mbookTag);
-                 mbookObject.setEmail(BuySell.finalemail);
-                 mbookObject.setCount(0);
-                 mbookObject.setUidd(BuySell.finalUid);
+                if(mbookName.getText().toString().equals("") || mbookAuthor.getText().toString().equals("") || mbookprice.getText().toString().equals(""))
+                {
+                    mbookName.setHintTextColor(Color.parseColor("#E57373"));
+                    mbookAuthor.setHintTextColor(Color.parseColor("#E57373"));
+                    mbookprice.setHintTextColor(Color.parseColor("#E57373"));
+                    Toast.makeText(SellingForm.this,"Read Fields are Mandetory",Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    mbookObject.setBookname(mbookName.getText().toString());
+                    mbookObject.setAuthorname(mbookAuthor.getText().toString());
+                    mbookObject.setPrice(mbookprice.getText().toString());
+                    mbookObject.setBooktype(mbookTag);
+                    mbookObject.setEmail(BuySell.finalemail);
+                    mbookObject.setCount(0);
+                    mbookObject.setUidd(BuySell.finalUid);
 
-                 mDatabaseReference.child(BuySell.finalUid).push().setValue(mbookObject);
-                //mDatabaseReference.child(mbookTag.getText().toString()).push().setValue(mbookObject);
+                    mDatabaseReference.child(BuySell.finalUid).push().setValue(mbookObject);
+                    //mDatabaseReference.child(mbookTag.getText().toString()).push().setValue(mbookObject);
 
 
-                Intent familyIntent = new Intent(SellingForm.this, ShowBookList.class);
-                startActivity(familyIntent);
+                    Intent familyIntent = new Intent(SellingForm.this, ShowBookList.class);
+                    startActivity(familyIntent);
+
+                }
 
             }
         });

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.ayeshaapp.android.bookexchange1.models.profile;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -101,12 +102,14 @@ public class BuySell extends AppCompatActivity {
 
                 List<AuthUI.IdpConfig> providers = Arrays.asList(
                         new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
+                        //new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build());
 
 
                 if (user != null) {
                     finalUid= user.getUid();
                     finalemail = user.getEmail();
                     finalname = user.getDisplayName();
+
                 } else {
                     startActivityForResult(
                             AuthUI.getInstance()

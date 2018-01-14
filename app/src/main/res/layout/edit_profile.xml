@@ -7,60 +7,62 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/margin"
+        android:layout_marginTop="@dimen/large_margin"
         android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/user_profile_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Tasneem Yasmeen"
-                android:textSize="24sp" />
-
-
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/user_profile_photo"
-                android:layout_width="200dp"
-                android:layout_height="150dp"
-                android:padding="15dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/profile" />
-
-        </RelativeLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="Email : "
+                android:text="Name : "
                 android:textSize="16sp" />
-            <TextView
-                android:id="@+id/user_profile_email"
+            <EditText
+                android:id="@+id/edit_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="example@gmail.com"
+                android:hint="First and Last Name"
                 android:textSize="16sp" />
 
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin">
+            <ImageView
+                android:id="@+id/edit_profile_photo"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:padding="15dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/profile" />
+
+            <ImageView
+                android:id="@+id/edit_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/edit_profile_photo"
+                android:layout_alignBottom="@id/edit_profile_photo"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_add_a_photo_black_24dp"
+                />
+
+
+        </RelativeLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -69,26 +71,25 @@
                 android:layout_marginTop="10dp"
                 android:text="Phone No : "
                 android:textSize="16sp" />
-            <TextView
-                android:id="@+id/user_profile_phone"
+            <EditText
+                android:id="@+id/edit_profile_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="01*********"
+                android:inputType="number"
+                android:hint="01*********"
                 android:textSize="16sp" />
-
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/Show_my_booklist"
+            android:id="@+id/edit_profile_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="Show myBookList" />
-
+            android:text="Save"/>
 
 
     </LinearLayout>
