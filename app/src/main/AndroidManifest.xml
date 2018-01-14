@@ -113,6 +113,16 @@
                 android:value="com.ayeshaapp.android.bookexchange1.BuySell"/>
         </activity>
 
+        <activity
+            android:name="com.ayeshaapp.android.bookexchange1.EditMyBook"
+            android:label="@string/app_name"
+            android:parentActivityName="com.ayeshaapp.android.bookexchange1.Advertise">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ayeshaapp.android.bookexchange1.BuySell"/>
+        </activity>
+
 
         <provider
             android:name="com.ayeshaapp.android.bookexchange1.data.BookProvider"

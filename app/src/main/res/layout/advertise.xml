@@ -5,6 +5,7 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/all_background"
     android:fillViewport="true">
 
 
@@ -18,26 +19,26 @@
             android:id="@+id/show_book_to_order_bookName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/large_margin"
+            android:layout_margin="18dp"
             android:text="@string/book_name"
             android:paddingBottom="10dp"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/show_book_to_order_bookWriter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/large_margin"
-            android:layout_marginBottom="@dimen/large_margin"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="18dp"
             android:text="@string/author_name"
             android:paddingBottom="10dp"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/show_book_to_order_bookPic"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:padding="20dp"
+            android:padding="14dp"
             android:layout_gravity="center"
             android:src="@drawable/boi" />
 
@@ -49,19 +50,48 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/price"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/advertise_order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
             android:text="@string/order"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/large_margin"
-            android:background="#8E24AA"
-            android:textColor="#FFFFFF"
-
+            android:layout_marginTop="10dp"
+            android:layout_margin="8dp"
+            android:background="@color/floting_color"
             />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/order_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Complete order using your phones email app"
+                android:textSize="14sp"
+                android:layout_centerInParent="true"/>
+
+
+            <Button
+                android:id="@+id/edit_adverise"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:text="edit"
+                android:layout_margin="8dp"
+                android:background="@color/floting_color"
+                android:layout_centerInParent="true"/>
+
+
+
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 </ScrollView>

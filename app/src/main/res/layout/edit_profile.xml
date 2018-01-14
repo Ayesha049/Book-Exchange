@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/all_background"
     android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,7 +90,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="Save"/>
+            android:text="Save"
+            android:background="@color/floting_color"/>
 
 
     </LinearLayout>

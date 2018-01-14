@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
                 android:padding="@dimen/margin"
-                android:text="@string/sell_book"
+                android:text="Edit Book"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="@dimen/large_text" />
         </LinearLayout>
@@ -35,11 +35,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/form_for_selling_book_name"
+                android:id="@+id/edit_mybook_bookname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
@@ -47,57 +47,22 @@
                 android:inputType="textMultiLine" />
 
             <EditText
-                android:id="@+id/form_for_selling_author"
+                android:id="@+id/edit_mybook_author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
                 android:hint="@string/author_name"
                 android:inputType="textMultiLine" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/add_image"
-                android:textSize="@dimen/small_text"/>
-
-            <ImageView
-                android:id="@+id/form_for_selling_add_image"
-                android:layout_width="@dimen/ex_ex_large_margin"
-                android:layout_height="@dimen/ex_ex_large_margin"
-                android:layout_margin="@dimen/margin"
-                android:layout_gravity="center"
-                android:src="@drawable/boi"
-                />
-
-
             <EditText
-                android:id="@+id/form_for_selling_price"
+                android:id="@+id/edit_mybook_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
                 android:hint="@string/price"
                 android:inputType="number" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/book_type"
-                    android:textSize="@dimen/small_text"/>
-
-                <Spinner
-                    android:id="@+id/form_for_selling_book_type_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:entries="@array/type_of_book_array"/>
-            </LinearLayout>
 
 
         </LinearLayout>
@@ -111,13 +76,13 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/form_for_selling_add_button"
+                    android:id="@+id/edit_mybook_save_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin"
                     android:layout_alignParentRight="true"
                     android:background="@color/floting_color"
-                    android:text="@string/add"
+                    android:text="save"
                     />
 
 

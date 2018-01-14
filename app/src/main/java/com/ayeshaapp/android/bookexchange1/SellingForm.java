@@ -56,6 +56,8 @@ public class SellingForm extends AppCompatActivity {
 
     //private BookDbHelper mDbHelper;
 
+    private static int photoupload = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +114,7 @@ public class SellingForm extends AppCompatActivity {
                     mbookName.setHintTextColor(Color.parseColor("#E57373"));
                     mbookAuthor.setHintTextColor(Color.parseColor("#E57373"));
                     mbookprice.setHintTextColor(Color.parseColor("#E57373"));
-                    Toast.makeText(SellingForm.this,"Read Fields are Mandetory",Toast.LENGTH_LONG).show();
+                    Toast.makeText(SellingForm.this,"Red Fields are Mandetory",Toast.LENGTH_LONG).show();
                 }
                 else
                 {
@@ -123,6 +125,10 @@ public class SellingForm extends AppCompatActivity {
                     mbookObject.setEmail(BuySell.finalemail);
                     mbookObject.setCount(0);
                     mbookObject.setUidd(BuySell.finalUid);
+                    if(photoupload==0)
+                    {
+                        mbookObject.setPhotoUrl("https://firebasestorage.googleapis.com/v0/b/book-exchange-49.appspot.com/o/boi.jpeg?alt=media&token=8c13755f-251e-4dca-bffe-064981fb0be4");
+                    }
 
                     mDatabaseReference.child(BuySell.finalUid).push().setValue(mbookObject);
                     //mDatabaseReference.child(mbookTag.getText().toString()).push().setValue(mbookObject);
@@ -155,6 +161,7 @@ public class SellingForm extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                             mbookObject.setPhotoUrl(taskSnapshot.getDownloadUrl().toString());
+                            photoupload = 1;
                             Glide.with(mbookimage.getContext())
                                     .load(taskSnapshot.getDownloadUrl().toString())
                                     .into(mbookimage);

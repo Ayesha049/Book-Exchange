@@ -38,6 +38,9 @@ public class Advertise extends AppCompatActivity {
         TextView priceTextView = findViewById(R.id.show_book_to_order_bookPrice);
         ImageView bookImage = findViewById(R.id.show_book_to_order_bookPic);
 
+        Button editAd = findViewById(R.id.edit_adverise);
+        TextView orderGuide = findViewById(R.id.order_guide);
+
 
         myBook = (Book)getIntent().getParcelableExtra("Book");
 
@@ -51,6 +54,16 @@ public class Advertise extends AppCompatActivity {
         Button orderButton = findViewById(R.id.advertise_order);
         if(myBook.getUidd().equals(BuySell.finalUid))
         {
+            orderGuide.setVisibility(View.INVISIBLE);
+            editAd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent numbersIntent = new Intent(Advertise.this, EditMyBook.class);
+                    numbersIntent.putExtra("ABook",myBook);
+                    startActivity(numbersIntent);
+
+                }
+            });
             orderButton.setText("Delete");
             orderButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -79,6 +92,7 @@ public class Advertise extends AppCompatActivity {
         }
         else
         {
+            editAd.setVisibility(View.INVISIBLE);
             orderButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

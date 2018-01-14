@@ -20,6 +20,15 @@ __Mentor__: Jeanna Clark (@asclepiusgal)
 
 *** 
 
+# _UI screenshots_
+
+- ![Sign Up Page](resources/UI_screenshots/1.png)
+- ![Home Page](resources/UI_screenshots/2.png)
+- ![List of available books](resources/UI_screenshots/5.png)
+- ![sell Book Form](resources/UI_screenshots/4.png)
+- ![Advertise Page](resources/UI_screenshots/6.png)
+- ![Profile Page](resources/UI_screenshots/3.png)
+
 ## _Sources_
 
 - [Learn IT Girl program](https://www.learnitgirl.com/)

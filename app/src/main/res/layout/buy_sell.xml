@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/all_background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -50,7 +51,7 @@
             android:paddingBottom="100dp"
             android:text="@string/welcome"
             android:textAllCaps="true"
-            android:textColor="@color/category_numbers"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="@dimen/large_text"
 
             />
@@ -73,23 +74,25 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_horizontal_margin"
             android:text="@string/select"
-            android:textColor="@color/category_numbers"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="@dimen/medium_text" />
 
         <Button
             android:id="@+id/buy_books"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
             android:layout_marginTop="@dimen/large_margin"
-            android:padding="@dimen/large_margin"
-            android:text="@string/buy_book" />
+            android:layout_margin="10dp"
+            android:text="@string/buy_book"
+            android:background="@color/floting_color"/>
 
         <Button
             android:id="@+id/sell_books"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/large_margin"
-            android:text="@string/sell_book" />
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:text="@string/sell_book"
+            android:background="@color/floting_color"
+            />
 
 
     </LinearLayout>

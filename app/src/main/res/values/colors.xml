@@ -17,6 +17,8 @@
     <!-- Primary color of the app (shown in the app bar) -->
     <color name="primary_color">#4A312A</color>
 
+    <color name="all_background">#FFFDE7</color>
+
     <!-- Primary dark color of the app (shown in the status bar) -->
     <color name="primary_dark_color">#2F1D1A</color>
 
@@ -36,6 +38,14 @@
     <color name="category_phrases">#16AFCA</color>
     <color name="floting_color">#D7CCC8</color>
     <color name="red_hint">#E57373</color>
+
+
+
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#512DA8</color>
+    <color name="colorPrimaryLight">#EDE7F6</color>
+    <color name="colorAccent">#7C4DFF</color>
+    <color name="colorSecondary">#FFC107</color>
 
 
 
