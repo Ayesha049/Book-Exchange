@@ -54,4 +54,109 @@
     </string-array>
 
 
+
+
+
+
+
+
+
+
+
+
+
+    <string name="label_google_sign_in" translatable="false">Firebase + Google Sign In</string>
+    <string name="desc_google_sign_in" translatable="false">Use a Google Sign In credential to authenticate with Firebase.</string>
+
+    <string name="label_facebook_login" translatable="false">Firebase + Facebook Login</string>
+    <string name="desc_facebook_login" translatable="false">Use a Facebook Login credential to authenticate with Firebase.</string>
+
+    <string name="label_twitter_login" translatable="false">Firebase + Twitter Login</string>
+    <string name="desc_twitter_login" translatable="false">Use a Twitter Login credential to authenticate with Firebase.</string>
+
+    <string name="label_emailpassword" translatable="false">Email/Password Authentication</string>
+    <string name="desc_emailpassword" translatable="false">Use an email and password to authenticate with Firebase.</string>
+
+    <string name="label_phone_auth" translatable="false">Phone Number Authentication</string>
+    <string name="desc_phone_auth" translatable="false">Use a phone number to authenticate with Firebase.</string>
+
+    <string name="label_anonymous_auth" translatable="false">Anonymous Authentication</string>
+    <string name="desc_anonymous_auth" translatable="false">Sign in anonymously and then later upgrade to a full Firebase Auth user.</string>
+
+    <string name="label_custom_auth" translatable="false">Custom Authentication</string>
+    <string name="desc_custom_auth" translatable="false">Use a custom token signed by your own server to authenticate with Firebase.</string>
+
+    <string name="label_firebase_ui" translatable="false">FirebaseUI Auth</string>
+    <string name="desc_firebase_ui" translatable="false">Use the FirebaseUI-Android library to authenticate with Firebase.</string>
+
+    <string name="hint_user_id" translatable="false">User ID</string>
+    <string name="get_custom_token" translatable="false">Get Token</string>
+    <string name="sign_in" translatable="false">Sign In</string>
+    <string name="create_account" translatable="false">Create Account</string>
+    <string name="sign_out" translatable="false">Sign Out</string>
+    <string name="verify_email" translatable="false">Verify Email</string>
+    <string name="disconnect" translatable="false">Disconnect</string>
+    <string name="loading" translatable="false">Loading…</string>
+    <string name="custom_token" translatable="false">Custom Token</string>
+    <string name="signed_in" translatable="false">Signed In</string>
+    <string name="signed_out" translatable="false">Signed Out</string>
+    <string name="token_null" translatable="false">Token: null</string>
+    <string name="hint_email" translatable="false">Email</string>
+    <string name="hint_password" translatable="false">Password</string>
+    <string name="desc_firebase_lockup" translatable="false">Firebase logo and name</string>
+    <string name="auth_failed" translatable="false">Authentication failed</string>
+    <string name="start_phone_auth" translatable="false">Start</string>
+    <string name="verify_phone_auth" translatable="false">Verify</string>
+    <string name="resend_phone_auth" translatable="false">Resend</string>
+    <string name="hint_phone_number" translatable="false">Phone Number</string>
+    <string name="hint_verification_code" translatable="false">Verification Code</string>
+    <string name="status_code_sent" translatable="false">Code Sent</string>
+    <string name="status_verification_failed" translatable="false">Verification failed</string>
+    <string name="status_verification_succeeded" translatable="false">Verification succeeded</string>
+    <string name="status_sign_in_failed" translatable="false">Sign-in failed</string>
+    <string name="instant_validation" translatable="false">(instant validation)</string>
+
+    <string name="firebase_status_fmt" translatable="false">Firebase User: %s</string>
+    <string name="firebase_user_management" translatable="false">Firebase User Management</string>
+
+    <string name="google_status_fmt" translatable="false">Google User: %s</string>
+    <string name="google_title_text" translatable="false">Google Sign In</string>
+
+    <string name="facebook_status_fmt" translatable="false">Facebook User: %s</string>
+    <string name="facebook_title_text" translatable="false">Facebook Login</string>
+
+    <string name="emailpassword_status_fmt" translatable="false">Email User: %1$s (verified: %2$b)</string>
+    <string name="emailpassword_title_text" translatable="false">Email and Password</string>
+
+    <string name="phone_title_text" translatable="false">Phone Number</string>
+
+    <string name="twitter_status_fmt" translatable="false">Twitter User: %s</string>
+    <string name="twitter_title_text" translatable="false">Twitter Login</string>
+
+    <string name="firebaseui_status_fmt" translatable="false">Firebase User: %s</string>
+    <string name="firebaseui_title_text" translatable="false">FirebaseUI Auth</string>
+
+    <string name="id_fmt" translatable="false">User ID: %s</string>
+    <string name="email_fmt" translatable="false">Email: %s</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>

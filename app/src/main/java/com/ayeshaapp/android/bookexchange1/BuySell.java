@@ -30,6 +30,7 @@ public class BuySell extends AppCompatActivity {
 
     public static String finalUid = "mee";
     public static String finalemail = "mee";
+    public static String finalname = "mee";
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
@@ -99,13 +100,13 @@ public class BuySell extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 List<AuthUI.IdpConfig> providers = Arrays.asList(
-                        new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
-                        new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build());
+                        new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
 
 
                 if (user != null) {
                     finalUid= user.getUid();
                     finalemail = user.getEmail();
+                    finalname = user.getDisplayName();
                 } else {
                     startActivityForResult(
                             AuthUI.getInstance()

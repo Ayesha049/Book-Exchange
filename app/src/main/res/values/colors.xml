@@ -21,7 +21,7 @@
     <color name="primary_dark_color">#2F1D1A</color>
 
     <!-- Background color for app -->
-    <color name="tan_background">#FFF7DA</color>
+    <color name="tan_background">#FFF9C4</color>
 
     <!-- Background color for the numbers category -->
     <color name="category_numbers">#FD8E09</color>
@@ -35,4 +35,9 @@
     <!-- Background color for the phrases category -->
     <color name="category_phrases">#16AFCA</color>
     <color name="floting_color">#D7CCC8</color>
+
+
+
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_300">#E0E0E0</color>
 </resources>

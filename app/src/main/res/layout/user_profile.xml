@@ -1,17 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <Button
-        android:id="@+id/Show_my_booklist"
+    android:fillViewport="true">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/large_margin"
-        android:layout_margin="@dimen/ex_ex_large_margin"
-        android:text="My Book List"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/user_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tasneem Yasmeen"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/edit_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_mode_edit_black_18dp"
+                />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/user_profile_photo"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:padding="15dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/profile" />
+
+            <ImageView
+                android:id="@+id/edit_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/user_profile_photo"
+                android:layout_alignBottom="@id/user_profile_photo"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_add_a_photo_black_24dp"
+                />
+
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Email : "
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/user_profile_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="example@gmail.com"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Phone No : "
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/user_profile_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="01*********"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/edit_phoneno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_mode_edit_black_18dp"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/Show_my_booklist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Show myBookList" />
+
+        <Button
+            android:id="@+id/reset_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text=" reset password " />
+
+    </LinearLayout>
+</ScrollView>
+
+
+
+
+
