@@ -1,5 +1,6 @@
 package com.ayeshaapp.android.bookexchange1;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,11 +17,14 @@ import android.widget.Toast;
 
 import com.ayeshaapp.android.bookexchange1.models.Book;
 
+import com.ayeshaapp.android.bookexchange1.models.profile;
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -41,6 +45,7 @@ public class ShowBookList extends AppCompatActivity {
     private DatabaseReference mRef;
     private ChildEventListener mLis;
     private BookAdapter madapter;
+    private profile mprofileObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,7 @@ public class ShowBookList extends AppCompatActivity {
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference().child("Books");
+
 
 
 
@@ -113,13 +119,15 @@ public class ShowBookList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
         switch (id){
+            case android.R.id.home:
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("flag",5);
+                setResult(Activity.RESULT_OK,returnIntent);
+                finish();
             case R.id.menu_profile:
                 Intent familyIntent = new Intent(ShowBookList.this, UserProfile.class);
+                familyIntent.putExtra("Profile",mprofileObject);
                 startActivity(familyIntent);
-                break;
-            case R.id.menu_logout:
-                Intent familyInt = new Intent(ShowBookList.this, BuySell.class);
-                startActivity(familyInt);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -127,7 +135,31 @@ public class ShowBookList extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mFirebaseDatabase.getReference().child("Users").child(BuySell.finalUid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                profile obj = dataSnapshot.getValue(profile.class);
+                //Toast.makeText(Advertise.this,"in Datasnapshot",Toast.LENGTH_LONG).show();
+                if(obj!=null)
+                {
+                    mprofileObject=obj;
+                }
+                else
+                {
+                    mprofileObject.setName("Unknown");
+                    mprofileObject.setPhotourl("https://firebasestorage.googleapis.com/v0/b/book-exchange-49.appspot.com/o/profile.jpg?alt=media&token=bed7b9d0-70b6-4a7c-bc05-a17991e402b3");
+                    mprofileObject.setPhoneno("01*********");
+                }
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 
 
 

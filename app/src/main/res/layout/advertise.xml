@@ -1,97 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/all_background"
     android:fillViewport="true">
-
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin"
+        android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/show_book_to_order_bookName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="18dp"
-            android:text="@string/book_name"
-            android:paddingBottom="10dp"
-            android:textSize="18sp" />
+            android:layout_marginTop="@dimen/margin"
+            android:layout_gravity="center"
+            android:text="Tasneem Yasmeen"
+            android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/show_book_to_order_bookWriter"
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/show_book_to_order_bookPic"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/profile" />
+
+        </RelativeLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginBottom="18dp"
-            android:text="@string/author_name"
-            android:paddingBottom="10dp"
-            android:textSize="18sp" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Author : "
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/show_book_to_order_bookWriter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/show_book_to_order_bookPic"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:padding="14dp"
-            android:layout_gravity="center"
-            android:src="@drawable/boi" />
+
+        </LinearLayout>
 
 
-
-        <TextView
-            android:id="@+id/show_book_to_order_bookPrice"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/price"
-            android:textSize="18sp" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Price : "
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/show_book_to_order_bookPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/advertise_order"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:text="@string/order"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_margin="8dp"
-            android:background="@color/floting_color"
-            />
-        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:paddingLeft="@dimen/margin"
+            android:paddingRight="@dimen/margin"
+            android:layout_marginTop="30dp"
+            android:text="Order Via Email"
+            android:background="@color/floting_color"/>
 
-            <TextView
-                android:id="@+id/order_guide"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Complete order using your phones email app"
-                android:textSize="14sp"
-                android:layout_centerInParent="true"/>
-
-
-            <Button
-                android:id="@+id/edit_adverise"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:layout_centerHorizontal="true"
-                android:text="edit"
-                android:layout_margin="8dp"
-                android:background="@color/floting_color"
-                android:layout_centerInParent="true"/>
+        <Button
+            android:id="@+id/edit_adverise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="@dimen/margin"
+            android:paddingRight="@dimen/margin"
+            android:layout_marginTop="10dp"
+            android:text="Edit"
+            android:background="@color/floting_color"/>
 
 
 
 
-
-        </RelativeLayout>
 
     </LinearLayout>
 </ScrollView>
+
+
+
+
+

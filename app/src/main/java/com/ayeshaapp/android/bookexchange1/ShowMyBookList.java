@@ -1,5 +1,6 @@
 package com.ayeshaapp.android.bookexchange1;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.ayeshaapp.android.bookexchange1.models.Book;
 
+import com.ayeshaapp.android.bookexchange1.models.profile;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,6 +50,7 @@ public class ShowMyBookList extends AppCompatActivity {
     private MyBookAdapter madapter;
     private String muid;
     private FirebaseAuth.AuthStateListener mFirebaseAuthListener;
+    private profile mprofileObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +62,23 @@ public class ShowMyBookList extends AppCompatActivity {
 
         books = new ArrayList<Book>();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mprofileObject = (profile) getIntent().getParcelableExtra("UProfile");
 
-        mDatabaseReference = mFirebaseDatabase.getReference().child("Books").child(BuySell.finalUid);
+        mDatabaseReference = mFirebaseDatabase.getReference().child("Books").child(mprofileObject.getUid());
         madapter = new MyBookAdapter(this, books);
 
         ListView listView = findViewById(R.id.my_booklist);
 
         listView.setAdapter(madapter);
 
-        registerForContextMenu(listView);
-
+        if(mprofileObject.getUid().equals(BuySell.finalUid))
+        {
+            registerForContextMenu(listView);
+        }
+        else
+        {
+            unregisterForContextMenu(listView);
+        }
 
         onSignedInInitialize();
 
@@ -161,6 +171,31 @@ public class ShowMyBookList extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        switch (id){
+            case android.R.id.home:
+                Intent intent = new Intent();
+                intent.putExtra("Profile", mprofileObject);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Toast.makeText(ShowMyBookList.this,"back pressed",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent();
+        intent.putExtra("Profile", mprofileObject);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
+        //startActivity(intent);
+    }
 
     private void onSignedInInitialize() {
         if(mChildEventListener==null)

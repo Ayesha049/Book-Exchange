@@ -9,13 +9,15 @@ public class profile implements Parcelable {
     private String photourl;
     private String email;
     private String phoneno;
+    private String Uid;
 
     public profile() { super(); }
-    public profile(String name, String photourl, String email, String phoneno){
+    public profile(String name, String photourl, String email, String phoneno,String Uid){
         this.name = name;
         this.photourl = photourl;
         this.email = email;
         this.phoneno = phoneno;
+        this.Uid = Uid;;
     }
 
     public void setName(String name){
@@ -43,11 +45,20 @@ public class profile implements Parcelable {
         return phoneno;
     }
 
+    public String getUid() {
+        return Uid;
+    }
+
+    public void setUid(String uid) {
+        Uid = uid;
+    }
+
     protected profile(Parcel in) {
         this.name = in.readString();
         this.photourl = in.readString();
         this.email = in.readString();
         this.phoneno = in.readString();
+        this.Uid = in.readString();
     }
     public static final Creator<profile> CREATOR = new Creator<profile>() {
         @Override
@@ -69,5 +80,6 @@ public class profile implements Parcelable {
         parcel.writeString(this.photourl);
         parcel.writeString(this.email);
         parcel.writeString(this.phoneno);
+        parcel.writeString(this.Uid);
     }
 }

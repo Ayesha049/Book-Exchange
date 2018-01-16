@@ -1,13 +1,16 @@
 package com.ayeshaapp.android.bookexchange1;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ayeshaapp.android.bookexchange1.models.profile;
 import com.bumptech.glide.Glide;
@@ -47,6 +50,8 @@ public class EditProfile extends AppCompatActivity {
     private FirebaseStorage mFirebaseStorage;
     private StorageReference mPhotoStrorageReference;
 
+    private int photoupload = 0;
+
     private static final int RC_PHOTO_PICKER =  2;
 
     @Override
@@ -70,6 +75,12 @@ public class EditProfile extends AppCompatActivity {
         mFirebaseStorage = FirebaseStorage.getInstance();
         mPhotoStrorageReference = mFirebaseStorage.getReference().child("profile_photos");
 
+        mprofileObject = new profile();
+        mprofileObject = (profile) getIntent().getParcelableExtra("Profile");
+        //Toast.makeText(EditProfile.this,mprofileObject.getEmail(),Toast.LENGTH_LONG).show();
+
+        phoneEdit.setText(mprofileObject.getPhoneno());
+        nameEdit.setText(mprofileObject.getName());
 
 
         photoEdit.setOnClickListener(new View.OnClickListener() {
@@ -94,15 +105,18 @@ public class EditProfile extends AppCompatActivity {
                 if(!namee.equals(""))
                 {
                     mDatabaseReference.child("name").setValue(namee);
+                    mprofileObject.setName(namee);
                 }
-                if(!phurl.equals(""))
+                if(photoupload==1)
                 {
                     mDatabaseReference.child("photourl").setValue(phurl);
+                    mprofileObject.setPhotourl(phurl);
                 }
 
                 if(!phonee.equals(""))
                 {
                     mDatabaseReference.child("phoneno").setValue(phonee);
+                    mprofileObject.setPhoneno(phonee);
                 }
                 /*if(!mprofileObject.getPhotourl().equals(""))
                 {
@@ -111,12 +125,41 @@ public class EditProfile extends AppCompatActivity {
 
 
                 Intent numbersIntent = new Intent(EditProfile.this, UserProfile.class);
+                numbersIntent.putExtra("Profile",mprofileObject);
                 startActivity(numbersIntent);
             }
         });
 
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        switch (id){
+            case android.R.id.home:
+                //Toast.makeText(EditProfile.this,"back clicked",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.putExtra("Profile", mprofileObject);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        //Toast.makeText(EditProfile.this,"back pressed",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent();
+        intent.putExtra("Profile", mprofileObject);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
+        //startActivity(intent);
     }
 
 
@@ -135,6 +178,7 @@ public class EditProfile extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             phurl = taskSnapshot.getDownloadUrl().toString();
+                            photoupload = 1;
 
                             //mprofileObject.setPhotourl(taskSnapshot.getDownloadUrl().toString());
 

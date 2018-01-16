@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ayeshaapp.android.bookexchange1.models.Book;
+import com.ayeshaapp.android.bookexchange1.models.profile;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +28,11 @@ import com.google.firebase.database.ValueEventListener;
 public class Advertise extends AppCompatActivity {
     private Book myBook;
 
+
+    private profile mprofileObject;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +45,11 @@ public class Advertise extends AppCompatActivity {
         ImageView bookImage = findViewById(R.id.show_book_to_order_bookPic);
 
         Button editAd = findViewById(R.id.edit_adverise);
-        TextView orderGuide = findViewById(R.id.order_guide);
+        //TextView orderGuide = findViewById(R.id.order_guide);
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference().child("Users");
+        mprofileObject = new profile();
 
 
         myBook = (Book)getIntent().getParcelableExtra("Book");
@@ -54,13 +64,13 @@ public class Advertise extends AppCompatActivity {
         Button orderButton = findViewById(R.id.advertise_order);
         if(myBook.getUidd().equals(BuySell.finalUid))
         {
-            orderGuide.setVisibility(View.INVISIBLE);
+            //orderGuide.setVisibility(View.INVISIBLE);
             editAd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent numbersIntent = new Intent(Advertise.this, EditMyBook.class);
                     numbersIntent.putExtra("ABook",myBook);
-                    startActivity(numbersIntent);
+                    startActivityForResult(numbersIntent,2);
 
                 }
             });
@@ -92,24 +102,34 @@ public class Advertise extends AppCompatActivity {
         }
         else
         {
-            editAd.setVisibility(View.INVISIBLE);
+            //editAd.setVisibility(View.INVISIBLE);
+            editAd.setText(" Owners Profile ");
+
+            //Toast.makeText(Advertise.this,mprofileObject.getName(),Toast.LENGTH_LONG).show();
+            editAd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent numbersIntent = new Intent(Advertise.this, UserProfile.class);
+                    numbersIntent.putExtra("Profile",mprofileObject);
+                    startActivity(numbersIntent);
+
+                }
+            });
             orderButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-
-
-
                     String[] TO = {myBook.getEmail()};
                     String[] CC = {""};
+                    String MyEmail = "Hello,\nI want to buy your book : " + myBook.getBookname() + "\nAuthor : "+ myBook.getAuthorname()+ "\n \nThanks\n";
                     Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
                     emailIntent.setData(Uri.parse("mailto:"));
                     emailIntent.setType("text/plain");
                     emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
                     emailIntent.putExtra(Intent.EXTRA_CC, CC);
-                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Book Exchange Order");
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, MyEmail);
 
                     try {
                         startActivity(Intent.createChooser(emailIntent, "Send mail..."));
@@ -145,4 +165,43 @@ public class Advertise extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2) {
+            if(resultCode == RESULT_OK) {
+                myBook = (Book) data.getParcelableExtra("Book");
+
+            }
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mDatabaseReference.child(myBook.getUidd()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                profile obj = dataSnapshot.getValue(profile.class);
+                //Toast.makeText(Advertise.this,"in Datasnapshot",Toast.LENGTH_LONG).show();
+                if(obj!=null)
+                {
+                    mprofileObject=obj;
+                }
+                else
+                {
+                    mprofileObject.setName("Unknown");
+                    mprofileObject.setPhotourl("https://firebasestorage.googleapis.com/v0/b/book-exchange-49.appspot.com/o/profile.jpg?alt=media&token=bed7b9d0-70b6-4a7c-bc05-a17991e402b3");
+                    mprofileObject.setPhoneno("01*********");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
 }

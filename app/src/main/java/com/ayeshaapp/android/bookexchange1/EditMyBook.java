@@ -1,8 +1,10 @@
 package com.ayeshaapp.android.bookexchange1;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,8 +68,6 @@ public class EditMyBook extends AppCompatActivity {
                 }
                 else
                 {
-
-
                     final Book edited = new Book();
                     edited.setBookname(ename);
                     edited.setAuthorname(eauthor);
@@ -100,9 +100,34 @@ public class EditMyBook extends AppCompatActivity {
             }
         });
 
+    }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        switch (id){
+            case android.R.id.home:
+                //Toast.makeText(EditMyBook.this,"back clicked",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.putExtra("Book", EBook);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 
 
+    @Override
+    public void onBackPressed() {
+        //Toast.makeText(EditMyBook.this,"back pressed",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent();
+        intent.putExtra("Book", EBook);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
+        //startActivity(intent);
     }
 }

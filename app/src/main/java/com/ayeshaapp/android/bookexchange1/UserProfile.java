@@ -75,18 +75,33 @@ public class UserProfile extends AppCompatActivity {
         mPhotoStrorageReference = mFirebaseStorage.getReference().child("profile_photos");
 
 
+        //mprofileObject = new profile();
+        mprofileObject = (profile) getIntent().getParcelableExtra("Profile");
 
-        mprofileObject = new profile();
-
+        //Toast.makeText(UserProfile.this,mprofileObject.getName(),Toast.LENGTH_LONG).show();
+        name.setText( mprofileObject.getName());
+        phoneNo.setText(mprofileObject.getPhoneno());
+        Glide.with(photo.getContext())
+                .load(mprofileObject.getPhotourl())
+                .into(photo);
 
         Button btn = findViewById(R.id.Show_my_booklist);
+        if(!mprofileObject.getUid().equals(BuySell.finalUid))
+        {
+            invalidateOptionsMenu();
+        }
+
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent familyIntent = new Intent(UserProfile.this, ShowMyBookList.class);
-                startActivity(familyIntent);
+                familyIntent.putExtra("UProfile",mprofileObject);
+                //startActivity(familyIntent);
+                startActivityForResult(familyIntent,2);
             }
         });
+
 
 
 
@@ -97,6 +112,13 @@ public class UserProfile extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.edit_profile_menu,menu);
+        if(!mprofileObject.getUid().equals(BuySell.finalUid))
+        {
+            MenuItem item = menu.findItem(R.id.edit_profile_menu);
+            item.setVisible(false);
+            MenuItem item1 = menu.findItem(R.id.reset_password_menu);
+            item1.setVisible(false);
+        }
         return true;
     }
 
@@ -106,22 +128,22 @@ public class UserProfile extends AppCompatActivity {
 
         switch(id){
             case R.id.edit_profile_menu:
+                mDatabaseReference.setValue(mprofileObject);
                 Intent numbersIntent = new Intent(UserProfile.this, EditProfile.class);
-                startActivity(numbersIntent);
+                numbersIntent.putExtra("Profile",mprofileObject);
+                startActivityForResult(numbersIntent,2);
                 break;
 
             case R.id.reset_password_menu:
                 FirebaseAuth auth = FirebaseAuth.getInstance();
-
                 auth.sendPasswordResetEmail(BuySell.finalemail)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    // do something when mail was sent successfully.
                                     Toast.makeText(UserProfile.this,"Successfully sent reset password link to your email",Toast.LENGTH_LONG).show();
                                 } else {
-                                    // ...
+                                    Toast.makeText(UserProfile.this,"Failed to sent reset password",Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -142,57 +164,21 @@ public class UserProfile extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        mpostListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                profile obj = dataSnapshot.getValue(profile.class);
-
-                if(obj!=null)
-                {
-                    mprofileObject=obj;
-
-                }
-                else
-                {
-                    mprofileObject.setEmail(BuySell.finalemail);
-                    mprofileObject.setName(BuySell.finalname);
-                    mprofileObject.setPhotourl("https://firebasestorage.googleapis.com/v0/b/book-exchange-49.appspot.com/o/profile.jpg?alt=media&token=bed7b9d0-70b6-4a7c-bc05-a17991e402b3");
-                    mprofileObject.setPhoneno("01*********");
-                }
-
-                name.setText( mprofileObject.getName());
-                phoneNo.setText(mprofileObject.getPhoneno());
-                Glide.with(photo.getContext())
-                        .load(mprofileObject.getPhotourl())
-                        .into(photo);
-
-
-
-                // ...
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        };
-        mDatabaseReference.addValueEventListener(mpostListener);
-
-        //mDatabaseReference.setValue(mprofileObject);
-
-
-
-        // [END post_value_event_listener]
-
-
     }
 
     protected void onResume() {
         super.onResume();
-        mDatabaseReference.addValueEventListener(mpostListener);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2) {
+            if(resultCode == RESULT_OK) {
+                mprofileObject = (profile) data.getParcelableExtra("Profile");
 
+            }
+        }
 
-
+    }
 }
